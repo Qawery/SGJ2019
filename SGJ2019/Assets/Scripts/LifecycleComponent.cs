@@ -1,36 +1,61 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
+using System.Collections.Generic;
 
 
 namespace SGJ2019
 {
+	[DisallowMultipleComponent]
 	public class LifecycleComponent : MonoBehaviour
 	{
-		private void Awake()
-		{
-		}
+		private List<ILifecycleBound> boundObjects;
 
-		private void OnEnable()
-		{
+
+		private void Awake()
+		{			
+			AttachToDependantComponents(gameObject);
 		}
 
 		private void Start()
 		{
+			Assert.IsTrue(LifecycleManager.Instance.IsLifecycleComponentRegistered(this));
 		}
 
-		private void Update()
+		private void AttachToDependantComponents(GameObject analyzedObject)
 		{
+			var dependantComponents = GetComponents<ILifecycleBound>();
+			foreach (var dependantComponent in dependantComponents)
+			{
+				boundObjects.Add(dependantComponent);
+			}
+			for (int i = 0; i < analyzedObject.transform.childCount; ++i)
+			{
+				if (analyzedObject.transform.GetChild(i).gameObject.GetComponent<LifecycleComponent>() == null)
+				{
+					AttachToDependantComponents(analyzedObject.transform.GetChild(i).gameObject);
+				}
+			}
 		}
 
-		private void LateUpdate()
+		public void SynchronizedInitialize(InitializationPhases phase)
 		{
+			foreach (var boundObject in boundObjects)
+			{
+				boundObject.InitializationPhase(phase);
+			}
 		}
 
-		private void OnDisable()
+		public void SynchronizedUpdate(UpdatePhases phase)
 		{
+			foreach (var boundObject in boundObjects)
+			{
+				boundObject.UpdatePhase(phase);
+			}
 		}
 
 		private void OnDestroy()
 		{
+			Assert.IsTrue(LifecycleManager.Instance.IsMarkedForDestruction(gameObject));
 		}
 	}
 }

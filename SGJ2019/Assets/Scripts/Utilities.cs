@@ -7,27 +7,9 @@ namespace SGJ2019
 {
 	public static class Utilities
 	{
-		public static GameObject Instantiate(GameObject original)
-		{
-			return Instantiate(original, Vector3.zero, Quaternion.identity, null);
-		}
-
-		public static GameObject Instantiate(GameObject original, Transform parent)
-		{
-			return Instantiate(original, Vector3.zero, Quaternion.identity, parent);
-		}
-
-		public static GameObject Instantiate(GameObject original, Vector3 position, Quaternion rotation, Transform parent = null)
-		{
-			Assert.IsNotNull(original, "Trying to create null object!");
-			GameObject instantiatedObject;
-			instantiatedObject = GameObject.Instantiate(original, position, rotation, parent);
-			Assert.IsNotNull(instantiatedObject, "Copy of " + original.name + " not created!");
-			return instantiatedObject;
-		}
-
 		public static T FindObjectInUpwardHiearchy<T>(GameObject firstObject) where T : MonoBehaviour
 		{
+			Assert.IsNotNull(firstObject);
 			T result = null;
 			Transform currentTransform = firstObject.transform;
 			while (currentTransform != null && result == null)
@@ -40,6 +22,7 @@ namespace SGJ2019
 
 		public static List<T> FindObjectsInUpwardHiearchy<T>(GameObject firstObject)
 		{
+			Assert.IsNotNull(firstObject);
 			List<T> results = new List<T>();
 			Transform currentTransform = firstObject.transform;
 			while (currentTransform != null)
