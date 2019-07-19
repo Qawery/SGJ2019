@@ -68,7 +68,7 @@ namespace SGJ2019
 		private void SceneLoaded(Scene scene, LoadSceneMode loadMode)
 		{
 			running = true;
-			for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length - 1; i++)
+			for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length; ++i)
 			{
 				foreach (var lifecycleComponent in lifecycleComponents)
 				{
@@ -79,14 +79,17 @@ namespace SGJ2019
 
 		private void Update()
 		{
-			for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length - 1; i++)
+			if (pendingComponents.Count > 0)
 			{
 				List<LifecycleComponent> newComponents = new List<LifecycleComponent>();
 				newComponents.AddRange(pendingComponents);
 				pendingComponents.Clear();
-				foreach (var initializedComponent in newComponents)
+				for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length; ++i)
 				{
-					initializedComponent.SynchronizedInitialize((InitializationPhases) i);
+					foreach (var initializedComponent in newComponents)
+					{
+						initializedComponent.SynchronizedInitialize((InitializationPhases)i);
+					}
 				}
 				foreach (var initializedComponent in newComponents)
 				{
@@ -94,7 +97,7 @@ namespace SGJ2019
 				}
 				newComponents.Clear();
 			}
-			for (int i = 0; i < Enum.GetValues(typeof(UpdatePhases)).Length - 1; i++)
+			for (int i = 0; i < Enum.GetValues(typeof(UpdatePhases)).Length; i++)
 			{
 				foreach (var lifecycleComponent in lifecycleComponents)
 				{

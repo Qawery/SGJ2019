@@ -9,7 +9,7 @@ namespace SGJ2019
 	{
 		public static System.Action<LifecycleComponent> OnLifecycleComponentCreated;
 		public static System.Action<LifecycleComponent> OnLifecycleComponentDestroyed;
-		private List<ILifecycleBound> dependantObjects = new List<ILifecycleBound>();
+		private List<IManagedLifecycle> dependantObjects = new List<IManagedLifecycle>();
 
 
 		private void Awake()
@@ -21,7 +21,7 @@ namespace SGJ2019
 
 		private void CollectDependantComponents(GameObject analyzedObject)
 		{
-			var dependantComponents = GetComponents<ILifecycleBound>();
+			var dependantComponents = GetComponents<IManagedLifecycle>();
 			foreach (var dependantComponent in dependantComponents)
 			{
 				dependantObjects.Add(dependantComponent);

@@ -1,9 +1,6 @@
-﻿using UnityEngine;
-
-
-namespace SGJ2019
+﻿namespace SGJ2019
 {
-	public interface ILifecycleBound
+	public interface IManagedLifecycle
 	{
 		void InitializationPhase(InitializationPhases phase);
 		void UpdatePhase(UpdatePhases phase);
