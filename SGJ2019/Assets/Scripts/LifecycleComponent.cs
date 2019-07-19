@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Assertions;
 using System.Collections.Generic;
 
 
@@ -8,54 +7,56 @@ namespace SGJ2019
 	[DisallowMultipleComponent]
 	public class LifecycleComponent : MonoBehaviour
 	{
-		private List<ILifecycleBound> boundObjects;
+		public static System.Action<LifecycleComponent> OnLifecycleComponentCreated;
+		public static System.Action<LifecycleComponent> OnLifecycleComponentDestroyed;
+		private List<ILifecycleBound> dependantObjects = new List<ILifecycleBound>();
 
 
 		private void Awake()
 		{			
-			AttachToDependantComponents(gameObject);
+			CollectDependantComponents(gameObject);
+			if (LifecycleManager.Instance == null);
+			OnLifecycleComponentCreated?.Invoke(this);
 		}
 
-		private void Start()
-		{
-			Assert.IsTrue(LifecycleManager.Instance.IsLifecycleComponentRegistered(this));
-		}
-
-		private void AttachToDependantComponents(GameObject analyzedObject)
+		private void CollectDependantComponents(GameObject analyzedObject)
 		{
 			var dependantComponents = GetComponents<ILifecycleBound>();
 			foreach (var dependantComponent in dependantComponents)
 			{
-				boundObjects.Add(dependantComponent);
+				dependantObjects.Add(dependantComponent);
 			}
 			for (int i = 0; i < analyzedObject.transform.childCount; ++i)
 			{
 				if (analyzedObject.transform.GetChild(i).gameObject.GetComponent<LifecycleComponent>() == null)
 				{
-					AttachToDependantComponents(analyzedObject.transform.GetChild(i).gameObject);
+					CollectDependantComponents(analyzedObject.transform.GetChild(i).gameObject);
 				}
 			}
 		}
 
 		public void SynchronizedInitialize(InitializationPhases phase)
 		{
-			foreach (var boundObject in boundObjects)
+			foreach (var dependantObject in dependantObjects)
 			{
-				boundObject.InitializationPhase(phase);
+				dependantObject.InitializationPhase(phase);
 			}
 		}
 
 		public void SynchronizedUpdate(UpdatePhases phase)
 		{
-			foreach (var boundObject in boundObjects)
+			if (isActiveAndEnabled)
 			{
-				boundObject.UpdatePhase(phase);
+				foreach (var dependantObject in dependantObjects)
+				{
+					dependantObject.UpdatePhase(phase);
+				}
 			}
 		}
 
 		private void OnDestroy()
 		{
-			Assert.IsTrue(LifecycleManager.Instance.IsMarkedForDestruction(gameObject));
+			OnLifecycleComponentDestroyed?.Invoke(this);
 		}
 	}
 }

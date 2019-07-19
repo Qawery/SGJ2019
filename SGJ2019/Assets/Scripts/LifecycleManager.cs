@@ -22,10 +22,9 @@ namespace SGJ2019
 	public class LifecycleManager : MonoBehaviour
 	{
 		private static LifecycleManager instance = null;
-		private List<LifecycleComponent> registeredLifecycleComponents = new List<LifecycleComponent>();
-		private List<LifecycleComponent> pendingToAddComponents = new List<LifecycleComponent>();
-		private List<GameObject> pendingToDestroyObjects = new List<GameObject>();
-
+		private List<LifecycleComponent> lifecycleComponents = new List<LifecycleComponent>();
+		private List<LifecycleComponent> pendingComponents = new List<LifecycleComponent>();
+		private bool running = false;
 
 		public static LifecycleManager Instance
 		{
@@ -36,7 +35,7 @@ namespace SGJ2019
 					var foundLifecycleManagers = FindObjectsOfType<LifecycleManager>();
 					Assert.IsTrue(foundLifecycleManagers.Length == 1, "Inappriopriate number of LifecycleManagers: " + foundLifecycleManagers.Length);
 					instance = foundLifecycleManagers[0];
-					Resources.FindObjectsOfTypeAll<>();
+					instance.Initialize();
 				}
 				return instance;
 			}
@@ -55,137 +54,70 @@ namespace SGJ2019
 				Destroy(gameObject);
 				return;
 			}
-			DontDestroyOnLoad(this.gameObject);
-			SceneManager.sceneLoaded += SceneLoaded;
 		}
 
+		private void Initialize()
+		{
+			DontDestroyOnLoad(this.gameObject);
+			SceneManager.sceneLoaded += SceneLoaded;
+			LifecycleComponent.OnLifecycleComponentCreated += OnLifecycleComponentCreated;
+			LifecycleComponent.OnLifecycleComponentDestroyed += OnLifecycleComponentDestroyed;
+		}
+
+		//TODO: Managing persistent components
 		private void SceneLoaded(Scene scene, LoadSceneMode loadMode)
 		{
+			running = true;
 			for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length - 1; i++)
 			{
-				foreach (var registeredLifecycleComponent in registeredLifecycleComponents)
+				foreach (var lifecycleComponent in lifecycleComponents)
 				{
-					if (!IsMarkedForDestruction(registeredLifecycleComponent.gameObject))
-					{
-						registeredLifecycleComponent.SynchronizedInitialize((InitializationPhases)i);
-					}
+					lifecycleComponent.SynchronizedInitialize((InitializationPhases) i);
 				}
 			}
 		}
 
 		private void Update()
 		{
-			if (pendingToAddComponents.Count > 0)
+			for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length - 1; i++)
 			{
-				List<LifecycleComponent> workingComponents = new List<LifecycleComponent>();
-				workingComponents.AddRange(pendingToAddComponents);
-				pendingToAddComponents.Clear();
-				for (int i = 0; i < Enum.GetValues(typeof(InitializationPhases)).Length - 1; i++)
+				List<LifecycleComponent> newComponents = new List<LifecycleComponent>();
+				newComponents.AddRange(pendingComponents);
+				pendingComponents.Clear();
+				foreach (var initializedComponent in newComponents)
 				{
-					foreach (var workingComponent in workingComponents)
-					{
-						if (!IsMarkedForDestruction(workingComponent.gameObject))
-						{
-							workingComponent.SynchronizedInitialize((InitializationPhases) i);
-						}
-					}
+					initializedComponent.SynchronizedInitialize((InitializationPhases) i);
 				}
-				foreach (var workingComponent in workingComponents)
+				foreach (var initializedComponent in newComponents)
 				{
-					if (!IsMarkedForDestruction(workingComponent.gameObject))
-					{
-						registeredLifecycleComponents.Add(workingComponent);
-					}
+					lifecycleComponents.Add(initializedComponent);
 				}
+				newComponents.Clear();
 			}
 			for (int i = 0; i < Enum.GetValues(typeof(UpdatePhases)).Length - 1; i++)
 			{
-				foreach (var registeredLifecycleComponent in registeredLifecycleComponents)
+				foreach (var lifecycleComponent in lifecycleComponents)
 				{
-					if (!IsMarkedForDestruction(registeredLifecycleComponent.gameObject))
-					{
-						registeredLifecycleComponent.SynchronizedUpdate((UpdatePhases) i);
-					}
-				}
-			}
-			for (int i = 0; i < pendingToDestroyObjects.Count;)
-			{
-				if (pendingToDestroyObjects[i] != null)
-				{
-					DestroyObject(pendingToDestroyObjects[i]);
-					++i;
-				}
-				else
-				{
-					pendingToDestroyObjects.RemoveAt(i);
+					lifecycleComponent.SynchronizedUpdate((UpdatePhases) i);
 				}
 			}
 		}
 
-		#region Instantiation and destruction
-		public GameObject Instantiate(GameObject original)
+		private void OnLifecycleComponentCreated(LifecycleComponent lifecycleComponent)
 		{
-			return Instantiate(original, Vector3.zero, Quaternion.identity, null);
-		}
-
-		public GameObject Instantiate(GameObject original, Transform parent)
-		{
-			return Instantiate(original, Vector3.zero, Quaternion.identity, parent);
-		}
-
-		public GameObject Instantiate(GameObject original, Vector3 position, Quaternion rotation, Transform parent = null)
-		{
-			Assert.IsNotNull(original);
-			GameObject instantiatedObject;
-			instantiatedObject = GameObject.Instantiate(original, position, rotation, parent);
-			Assert.IsNotNull(instantiatedObject);
-			pendingToAddComponents.AddRange(instantiatedObject.GetComponentsInChildren<LifecycleComponent>());
-			return instantiatedObject;
-		}
-
-		public bool IsLifecycleComponentRegistered(LifecycleComponent lifecycleComponent)
-		{
-			Assert.IsNotNull(lifecycleComponent);
-			return pendingToAddComponents.Contains(lifecycleComponent) || registeredLifecycleComponents.Contains(lifecycleComponent);
-		}
-
-		public bool IsMarkedForDestruction(GameObject objectToChecked)
-		{
-			Assert.IsNotNull(objectToChecked);
-			return pendingToDestroyObjects.Contains(objectToChecked);
-		}
-
-		public void MarkForDestruction(GameObject objectToDestroy)
-		{
-			Assert.IsNotNull(objectToDestroy);
-			pendingToDestroyObjects.Add(objectToDestroy);
-		}
-
-		/*
-		public void MarkToDestroy(GameObject objectToDestroy)
-		{
-			foreach (var lifecycleComponent in objectToDestroy.GetComponentsInChildren<LifecycleComponent>())
+			if (running)
 			{
-				MarkToDestroy(lifecycleComponent);
-			}
-		}
-
-		private void MarkToDestroy(LifecycleComponent lifecycleComponent)
-		{
-			if (registeredLifecycleComponents.Contains(lifecycleComponent))
-			{
-				pendingToDestroyComponents.Add(lifecycleComponent);
-			}
-			else if (pendingToAddComponents.Contains(lifecycleComponent))
-			{
-				pendingToAddComponents.Remove(lifecycleComponent);
+				pendingComponents.Add(lifecycleComponent);
 			}
 			else
 			{
-				Assert.IsTrue(false);
+				lifecycleComponents.Add(lifecycleComponent);
 			}
 		}
-		*/
-		#endregion
+
+		private void OnLifecycleComponentDestroyed(LifecycleComponent lifecycleComponent)
+		{
+			lifecycleComponents.Remove(lifecycleComponent);
+		}
 	}
 }
