@@ -13,6 +13,8 @@ namespace SGJ2019
 
 	public class TurnManager : SimpleSingleton<TurnManager>, IManagedUpdate
 	{
+		private int roundNumber = 1;
+		public int RoundNumber => roundNumber;
 		public System.Action OnTurnEnd;
 		private Dictionary<OwnerPhase, List<AIManagedCard>> aiManagedCards = new Dictionary<OwnerPhase, List<AIManagedCard>>();
 		private OwnerPhase currentTurnPhase = OwnerPhase.HUMAN;
@@ -22,18 +24,24 @@ namespace SGJ2019
 		public Dictionary<UpdatePhases, System.Action> UpdateActions => updateActions;
 		private Dictionary<UpdatePhases, System.Action> updateActions = new Dictionary<UpdatePhases, System.Action>();
 
+		public override Dictionary<InitializationPhases, System.Action> InitializationActions =>
+			new Dictionary<InitializationPhases, System.Action>()
+			{
+				[InitializationPhases.LAST] = ManagedInitialize
+			};
 
-		protected override void Awake()
+
+		protected override void ManagedInitialize()
 		{
-			if (Instance != this)
+			base.ManagedInitialize();
+			if (Instance == this)
 			{
-				Destroy(gameObject);
-				return;
-			}
-			updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
-			for (int i = 1; i < Enum.GetValues(typeof(OwnerPhase)).Length; ++i)
-			{
-				aiManagedCards.Add((OwnerPhase) i, new List<AIManagedCard>());
+				updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
+				for (int i = 1; i < Enum.GetValues(typeof(OwnerPhase)).Length; ++i)
+				{
+					aiManagedCards.Add((OwnerPhase)i, new List<AIManagedCard>());
+				}
+				LogManager.Instance.AddMessage("Level start, round " + roundNumber + ", player turn");
 			}
 		}
 
@@ -73,10 +81,13 @@ namespace SGJ2019
 				{
 					OnTurnEnd?.Invoke();
 					currentTurnPhase = OwnerPhase.HUMAN;
+					++roundNumber;
+					LogManager.Instance.AddMessage("Round " + roundNumber.ToString() + " start, player turn");
 				}
 				else
 				{
 					++currentTurnPhase;
+					LogManager.Instance.AddMessage("Nature turn");
 				}
 			}
 		}
@@ -86,6 +97,7 @@ namespace SGJ2019
 			if (currentTurnPhase == OwnerPhase.HUMAN)
 			{
 				currentTurnPhase = OwnerPhase.ENEMY;
+				LogManager.Instance.AddMessage("Enemy turn");
 			}
 		}
 

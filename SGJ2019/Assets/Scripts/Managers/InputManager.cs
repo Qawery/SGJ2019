@@ -9,7 +9,7 @@ namespace SGJ2019
 	public class InputManager : SimpleSingleton<InputManager>, IManagedInitialization
 	{
 		private const int NO_ACTION = -1;
-		[SerializeField] private LogText logText = null;
+		[SerializeField] private TextBox logText = null;
 		public event CardSlotSelectionChange OnCardSlotSelectionChange;
 		public System.Action OnSelectedActionIndexChange;
 		private CardSlot selectedCardSlot = null;
@@ -89,18 +89,16 @@ namespace SGJ2019
 			}
 		}
 
-		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
-			new Dictionary<InitializationPhases, System.Action>()
-			{
-				[InitializationPhases.FIRST] = ManagedInitialize
-			};
 
-
-		private void ManagedInitialize()
+		protected override void ManagedInitialize()
 		{
-			Assert.IsNotNull(logText);
-			CardSlot.OnSlotClicked += CardSlotClicked;
-			TurnManager.Instance.OnTurnEnd += OnTurnEnd;
+			base.ManagedInitialize();
+			if (Instance == this)
+			{
+				Assert.IsNotNull(logText);
+				CardSlot.OnSlotClicked += CardSlotClicked;
+				TurnManager.Instance.OnTurnEnd += OnTurnEnd;
+			}
 		}
 
 		private void LateUpdate()

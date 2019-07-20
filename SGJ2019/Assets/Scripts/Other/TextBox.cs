@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 
 
 namespace SGJ2019
 {
-	public class LogText : MonoBehaviour
+	public class TextBox : MonoBehaviour
 	{
-		[SerializeField] private TMPro.TextMeshProUGUI text;
+		[SerializeField] private TMPro.TextMeshProUGUI text = null;
 
 
 		private void Start()
 		{
+			Assert.IsNotNull(text);
 			SetText("");
 		}
 

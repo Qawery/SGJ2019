@@ -5,13 +5,20 @@ using System.Collections.Generic;
 
 namespace SGJ2019
 {
-	public class RowManager : MonoBehaviour
+	public class RowManager : MonoBehaviour, IManagedInitialization
 	{
 		[SerializeField] private CardSlot cardSlotPrefab = null;
 		private List<CardSlot> currentCardSlots = new List<CardSlot>();
 
 
-		private void Awake()
+		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
+				new Dictionary<InitializationPhases, System.Action>()
+				{
+					[InitializationPhases.LAST] = ManagedInitialize
+				};
+
+
+		private void ManagedInitialize()
 		{
 			Assert.IsNotNull(cardSlotPrefab);
 			Assert.IsTrue(GetComponentsInChildren<CardSlot>().Length == 0);

@@ -3,7 +3,7 @@
 
 namespace SGJ2019
 {
-	public class Push : MonoBehaviour
+	public class MeleeMonster : MonoBehaviour
 	{
 
 	}

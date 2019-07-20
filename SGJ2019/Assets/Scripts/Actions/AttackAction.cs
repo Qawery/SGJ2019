@@ -23,25 +23,39 @@ namespace SGJ2019
 			Assert.IsTrue(MaxRange >= MinRange);
 		}
 
-		public override void ExecuteAction(CardSlot source, CardSlot target)
+		public override bool IsActionPossible(CardSlot source, CardSlot target)
 		{
-			var playerCard = (source.Card as PlayerOwnedCard);
-			if (playerCard.ActionPointsComponent.CurrentActionPoints < Cost)
+			var actionPoints = source.Card.GetComponent<ActionPointsComponent>();
+			if (actionPoints != null && actionPoints.CurrentActionPoints < Cost)
 			{
-				return;
+				return false;
 			}
 			var targetHealthComponent = target.Card.GetComponent<HealthComponent>();
 			if (targetHealthComponent == null)
 			{
-				return;
+				return false;
 			}
 			var rowManager = source.transform.parent.GetComponent<RowManager>();
 			if (IsTargetOutsideRange(rowManager, source, target))
 			{
-				return;
+				return false;
 			}
-			playerCard.ActionPointsComponent.Spend(Cost);
-			targetHealthComponent.Damage(Damage);
+			return true;
+		}
+
+		public override void ExecuteAction(CardSlot source, CardSlot target)
+		{
+			if (IsActionPossible(source, target))
+			{
+				var actionPoints = source.Card.GetComponent<ActionPointsComponent>();
+				if (actionPoints != null)
+				{
+					actionPoints.Spend(Cost);
+				}
+				var targetHealthComponent = target.Card.GetComponent<HealthComponent>();
+				targetHealthComponent.Damage(Damage);
+				LogManager.Instance.AddMessage(source.Card.CardName + " attacked " + target.Card.CardName + " with " + Name + " for " + Damage.ToString() + " damage");
+			}
 		}
 
 		private bool IsTargetOutsideRange(RowManager rowManager, CardSlot source, CardSlot target)

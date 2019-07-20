@@ -120,6 +120,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &200265925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6684187559492879172, guid: 566f080f6a5f8a6469ef9d264e6d8d36,
+    type: 3}
+  m_PrefabInstance: {fileID: 6684187559357384489}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &200265929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200265925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7947f63a62bcaac4897a0e9db39c814b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1016887787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -642,6 +660,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7298007359129617823, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343788161873647818, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343788161873647818, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343788161873647818, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343788161873647818, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343788161873647818, guid: d3e055abb99cd674cb479cce63697b81,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0

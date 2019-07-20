@@ -7,7 +7,7 @@ namespace SGJ2019
 	[RequireComponent(typeof(Camera))]
 	public class CameraController : MonoBehaviour, IManagedInitialization, IManagedUpdate
 	{
-		private Camera camera = null;
+		private Camera defaultCamera = null;
 		[SerializeField] private float panSpeed = 100.0f;
 		[SerializeField] private float maxPositionOffsetX = 100.0f;
 		[SerializeField] private float maxPositionOffsetY = 100.0f;
@@ -29,17 +29,17 @@ namespace SGJ2019
 		private void ManagedInitialize()
 		{
 			updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
-			camera = GetComponent<Camera>();
+			defaultCamera = GetComponent<Camera>();
 		}
 
 		private void ManagedUpdate()
 		{
-			camera.orthographicSize += Input.GetAxis("Zoom") * zoomSpeed;
-			camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, minOrthographicSize, maxOrthographicSize);
+			defaultCamera.orthographicSize += Input.GetAxis("Zoom") * zoomSpeed;
+			defaultCamera.orthographicSize = Mathf.Clamp(defaultCamera.orthographicSize, minOrthographicSize, maxOrthographicSize);
 			Vector3 newCameraPosition = transform.position;
-			newCameraPosition.x += Input.GetAxis("MainHorizontal") * zoomSpeed;
+			newCameraPosition.x += Input.GetAxis("MainHorizontal") * panSpeed;
 			newCameraPosition.x = Mathf.Clamp(newCameraPosition.x, -maxPositionOffsetX, maxPositionOffsetX);
-			newCameraPosition.y += Input.GetAxis("MainVertical") * zoomSpeed;
+			newCameraPosition.y += Input.GetAxis("MainVertical") * panSpeed;
 			newCameraPosition.y = Mathf.Clamp(newCameraPosition.y, -maxPositionOffsetY, maxPositionOffsetY);
 			transform.position = newCameraPosition;
 		}

@@ -56,9 +56,16 @@ namespace SGJ2019
 			}
 		}
 
+		private void OnDestroy()
+		{
+			if (Instance == this)
+			{
+				Instance = null;
+			}
+		}
+
 		private void Initialize()
 		{
-			DontDestroyOnLoad(this.gameObject);
 			SceneManager.sceneLoaded += SceneLoaded;
 			LifecycleComponent.GlobalOnLifecycleComponentCreated += OnLifecycleComponentCreated;
 			LifecycleComponent.GlobalOnLifecycleComponentDestroyed += OnLifecycleComponentDestroyed;

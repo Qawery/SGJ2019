@@ -9,6 +9,7 @@ namespace SGJ2019
 	public abstract class Card : MonoBehaviour, IManagedInitialization, IManagedDestroy, ILifecycleBound
 	{
 		[SerializeField] private TMPro.TextMeshProUGUI cardName = null;
+		public string CardName => cardName.text;
 		[SerializeField] protected TMPro.TextMeshProUGUI description = null;
 		[SerializeField] protected OwnerPhase ownership = OwnerPhase.HUMAN;
 		private LifecycleComponent lifecycleComponent = null;
