@@ -14,7 +14,7 @@ namespace SGJ2019
 	public class TurnManager : SimpleSingleton<TurnManager>, IManagedUpdate
 	{
 		public System.Action OnTurnEnd;
-		private Dictionary<TurnPhase, List<TurnManagedCard>> turnOrderForObjects = new Dictionary<TurnPhase, List<TurnManagedCard>>();
+		private Dictionary<TurnPhase, List<TurnManaged>> turnOrderForObjects = new Dictionary<TurnPhase, List<TurnManaged>>();
 		private TurnPhase currentTurnPhase = TurnPhase.HUMAN;
 
 
@@ -35,7 +35,7 @@ namespace SGJ2019
 			updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
 			for (int i = 1; i < Enum.GetValues(typeof(TurnPhase)).Length; ++i)
 			{
-				turnOrderForObjects.Add((TurnPhase) i, new List<TurnManagedCard>());
+				turnOrderForObjects.Add((TurnPhase) i, new List<TurnManaged>());
 			}
 		}
 
@@ -91,13 +91,13 @@ namespace SGJ2019
 			}
 		}
 
-		public void RegisterTurnManagedCard(TurnManagedCard turnManagedCard)
+		public void RegisterTurnManagedCard(TurnManaged turnManagedCard)
 		{
 			Assert.IsNotNull(turnManagedCard);
 			turnOrderForObjects[turnManagedCard.Ownership].Add(turnManagedCard);
 		}
 
-		public void UnregisterTurnManagedCard(TurnManagedCard turnManagedCard)
+		public void UnregisterTurnManagedCard(TurnManaged turnManagedCard)
 		{
 			Assert.IsNotNull(turnManagedCard);
 			turnOrderForObjects[turnManagedCard.Ownership].Remove(turnManagedCard);

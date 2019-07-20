@@ -9,7 +9,8 @@ namespace SGJ2019
 		READY, WAITING, WORKING, DONE
 	}
 
-	public abstract class TurnManagedCard : MonoBehaviour, IManagedInitialization, IManagedDestroy
+
+	public abstract class TurnManaged : MonoBehaviour, IManagedInitialization, IManagedDestroy
 	{
 		protected CardExecutionState executionState = CardExecutionState.READY;
 		[SerializeField] protected TurnPhase ownership = TurnPhase.NATURE;
@@ -23,7 +24,7 @@ namespace SGJ2019
 		protected Dictionary<InitializationPhases, System.Action> initializationActions = new Dictionary<InitializationPhases, System.Action>();
 
 
-		protected void Awake()
+		protected virtual void Awake()
 		{
 			initializationActions.Add(InitializationPhases.LAST, ManagedInitialize);
 		}

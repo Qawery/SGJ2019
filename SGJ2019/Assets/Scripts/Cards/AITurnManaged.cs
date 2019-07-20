@@ -3,7 +3,7 @@
 
 namespace SGJ2019
 {
-	public class AIManagedCard : TurnManagedCard
+	public class AITurnManaged : TurnManaged
 	{
 		public override bool CanContinue()
 		{
