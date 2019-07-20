@@ -11,19 +11,20 @@ namespace SGJ2019
 		private const int NO_ACTION = -1;
 		[SerializeField] private LogText logText = null;
 		public event CardSlotSelectionChange OnCardSlotSelectionChange;
+		public System.Action OnSelectedActionIndexChange;
 		private CardSlot selectedCardSlot = null;
 		private bool inputBlockade = false; //HAXOR: na ograniczenie input'u
 		private int selectedActionIndex = NO_ACTION;
 
 
-		private int SelectedActionIndex
+		public int SelectedActionIndex
 		{
 			get
 			{
 				return selectedActionIndex;
 			}
 
-			set
+			private set
 			{
 				if (value != NO_ACTION)
 				{
@@ -40,6 +41,7 @@ namespace SGJ2019
 					logText.SetText("");
 				}
 				selectedActionIndex = value;
+				OnSelectedActionIndexChange?.Invoke();
 			}
 		}
 

@@ -3,15 +3,17 @@
 	public class MovementAction : Action
 	{
 		public override string Name => "Move";
-		public override string Description => "Move to adjacent space";
+		public override string Description => "Move to adjacent space" + "\n" +
+												base.Description;
+		public override int Cost => 1;
 
 
 		public override void ExecuteAction(CardSlot source, CardSlot target)
 		{
 			var playerCard = (source.Card as PlayerOwnedCard);
-			if (playerCard.currentActionPoints > 0)
+			if (playerCard.ActionPointsComponent.CurrentActionPoints >= Cost)
 			{
-				--playerCard.currentActionPoints;
+				playerCard.ActionPointsComponent.Spend(Cost);
 				var rowManager = source.transform.parent.GetComponent<RowManager>();
 				int selectedIndex = rowManager.GetIndexOfCard(source.Card);
 				int otherIndex = rowManager.GetIndexOfCard(target.Card);

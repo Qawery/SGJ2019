@@ -1,19 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 
 namespace SGJ2019
 {
+	[RequireComponent(typeof(HealthComponent))]
+	[RequireComponent(typeof(ActionPointsComponent))]	
 	public class PlayerOwnedCard : Card
 	{
-		private const int MAX_HEALTH_POINTS = 5;
-		public int currentHealthPoints = MAX_HEALTH_POINTS;
-		private const int MAX_ACTION_POINTS = 2;
-		public int currentActionPoints = MAX_ACTION_POINTS;
+		protected HealthComponent healthCompnent = null;
+		public HealthComponent HealthCompnent => healthCompnent;
+		protected ActionPointsComponent actionPointsComponent = null;
+		public ActionPointsComponent ActionPointsComponent => actionPointsComponent;
 
 
-		protected override void OnTurnEnd()
+		protected override void ManagedInitialize()
 		{
-			currentActionPoints = MAX_ACTION_POINTS;
+			base.ManagedInitialize();
+			healthCompnent = GetComponent<HealthComponent>();
+			actionPointsComponent = GetComponent<ActionPointsComponent>(); 
 		}
 
 		public List<Action> GetAvailableActions()
@@ -27,8 +32,8 @@ namespace SGJ2019
 		private void Update()
 		{
 			description.text =
-				"Health: " + currentHealthPoints.ToString() + "\n" +
-				"Action Points left: " + currentActionPoints.ToString();
+				"Health: " + healthCompnent.CurrentHealth.ToString() + " / " + healthCompnent.MaxHealth.ToString() + "\n" +
+				"Action Points left: " + actionPointsComponent.CurrentActionPoints.ToString();
 		}
 	}
 }

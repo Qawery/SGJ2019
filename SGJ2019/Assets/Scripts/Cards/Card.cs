@@ -34,6 +34,8 @@ namespace SGJ2019
 			TurnManager.Instance.OnTurnEnd -= OnTurnEnd;
 		}
 
-		protected abstract void OnTurnEnd();
+		protected virtual void OnTurnEnd()
+		{
+		}
 	}
 }
