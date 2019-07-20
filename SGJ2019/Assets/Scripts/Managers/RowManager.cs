@@ -168,9 +168,15 @@ namespace SGJ2019
 			}
 		}
 
-		public int GetNumberOFCards()
+		public int GetNumberOfCards()
 		{
 			return currentCardSlots.Count;
+		}
+
+		public Card GetCardOnIndex(int index)
+		{
+			Assert.IsTrue(index >= 0 && index < currentCardSlots.Count);
+			return currentCardSlots[index].Card;
 		}
 	}
 }

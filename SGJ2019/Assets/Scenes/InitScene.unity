@@ -120,12 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!20 &48103882 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5456910882552842310, guid: d3e055abb99cd674cb479cce63697b81,
-    type: 3}
-  m_PrefabInstance: {fileID: 3341294392892553418}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &657126140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -564,7 +558,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1691047323
 MonoBehaviour:
@@ -596,6 +590,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7947f63a62bcaac4897a0e9db39c814b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1825699167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3341294394014406832, guid: d3e055abb99cd674cb479cce63697b81,
+    type: 3}
+  m_PrefabInstance: {fileID: 3341294392892553418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1825699168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825699167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Menu1
+  m_VerticalAxis: Menu2
+  m_SubmitButton: Menu3
+  m_CancelButton: Menu4
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!1001 &1987303244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -854,7 +873,7 @@ PrefabInstance:
     - target: {fileID: 5279188867538200017, guid: 362acf5c0e125e04bb7eb51914a876dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5279188867538200017, guid: 362acf5c0e125e04bb7eb51914a876dc,
         type: 3}
@@ -1055,11 +1074,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7985323854976449669, guid: d3e055abb99cd674cb479cce63697b81,
-        type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 48103882}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3e055abb99cd674cb479cce63697b81, type: 3}
 --- !u!1001 &6684187559357384489

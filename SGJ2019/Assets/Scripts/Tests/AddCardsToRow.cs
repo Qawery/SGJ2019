@@ -12,10 +12,10 @@ namespace SGJ2019
 		bool moveLeft = true;
 
 
-		protected override void Awake()
+		protected override void ManagedInitialize()
 		{
 			Assert.IsNotNull(row);
-			base.Awake();
+			base.ManagedInitialize();
 		}
 
 		public override void ExecuteTurn()

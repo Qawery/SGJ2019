@@ -11,11 +11,11 @@ namespace SGJ2019
 		bool moveLeft = true;
 
 
-		protected override void Awake()
+		protected override void ManagedInitialize()
 		{
 			Assert.IsNotNull(card);
 			Assert.IsNotNull(row);
-			base.Awake();
+			base.ManagedInitialize();
 		}
 
 		public override void ExecuteTurn()
@@ -36,11 +36,11 @@ namespace SGJ2019
 				}
 				else
 				{
-					if (cardIndex < row.GetNumberOFCards() - 1)
+					if (cardIndex < row.GetNumberOfCards() - 1)
 					{
 						row.MoveCardRight(card);
 					}
-					else if (cardIndex == row.GetNumberOFCards() - 1)
+					else if (cardIndex == row.GetNumberOfCards() - 1)
 					{
 						moveLeft = !moveLeft;
 					}

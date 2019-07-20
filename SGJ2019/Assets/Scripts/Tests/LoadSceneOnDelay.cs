@@ -7,7 +7,7 @@ namespace SGJ2019
 	public class LoadSceneOnDelay : MonoBehaviour
 	{
 		[SerializeField] private float time = 1.0f;
-		[SerializeField] private string sceneName;
+		[SerializeField] private string sceneName = "";
 
 
 		private void Update()

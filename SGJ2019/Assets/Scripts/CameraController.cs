@@ -16,21 +16,19 @@ namespace SGJ2019
 		[SerializeField] private float maxOrthographicSize = 1000.0f;
 
 
-		public Dictionary<InitializationPhases, System.Action> InitializationActions => initializationActions;
-		private Dictionary<InitializationPhases, System.Action> initializationActions = new Dictionary<InitializationPhases, System.Action>();
+		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
+			new Dictionary<InitializationPhases, System.Action>()
+			{
+				[InitializationPhases.FIRST] = ManagedInitialize
+			};
 
 		public Dictionary<UpdatePhases, System.Action> UpdateActions => updateActions;
 		private Dictionary<UpdatePhases, System.Action> updateActions = new Dictionary<UpdatePhases, System.Action>();
 
 
-		private void Awake()
-		{
-			initializationActions.Add(InitializationPhases.FIRST, ManagedInitialize);
-			updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
-		}
-
 		private void ManagedInitialize()
 		{
+			updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
 			camera = GetComponent<Camera>();
 		}
 

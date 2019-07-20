@@ -1,23 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 
 namespace SGJ2019
 {
-	public class CardSlot : MonoBehaviour, IManagedInitialization
+	public class CardSlot : MonoBehaviour, IManagedInitialization, ILifecycleBound, IPointerClickHandler
 	{
+		public static System.Action<CardSlot> OnSlotClicked;
 		private Card card = null;
+		private LifecycleComponent lifecycleComponent = null;
+
+
 		public Card Card => card;
 
-		public Dictionary<InitializationPhases, System.Action> InitializationActions => initializationActions;
-		private Dictionary<InitializationPhases, System.Action> initializationActions = new Dictionary<InitializationPhases, System.Action>();
+		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
+			new Dictionary<InitializationPhases, System.Action>()
+			{
+				[InitializationPhases.FIRST] = ManagedInitialize
+			};
 
-
-		private void Awake()
+		public LifecycleComponent LifecycleComponent
 		{
-			initializationActions.Add(InitializationPhases.FIRST, ManagedInitialize);			
+			get
+			{
+				return lifecycleComponent;
+			}
+
+			set
+			{
+				Assert.IsNull(lifecycleComponent);
+				lifecycleComponent = value;
+			}
 		}
+
 
 		private void ManagedInitialize()
 		{
@@ -38,8 +55,9 @@ namespace SGJ2019
 			card.transform.position = transform.position;
 		}
 
-		public void OnClicked()
+		public void OnPointerClick(PointerEventData eventData)
 		{
+			OnSlotClicked?.Invoke(this);
 		}
 	}
 }

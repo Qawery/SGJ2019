@@ -22,11 +22,10 @@ namespace SGJ2019
 			Assert.IsNotNull(description);
 		}
 
-		public void SetCardData(CardData cardData)
+		public void SetCardData(string newCardId)
 		{
-			title.text = cardData.title;
-
-			description.text = cardData.description;
+			cardId = newCardId;
+			//TODO: Pobieranie wartosci z biblioteki prefabow za pomocą samego Id
 		}
 	}
 }

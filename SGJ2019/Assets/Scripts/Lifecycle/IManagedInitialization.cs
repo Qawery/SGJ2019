@@ -10,12 +10,9 @@ namespace SGJ2019
 }
 
 /*
-	public Dictionary<InitializationPhases, System.Action> InitializationActions => initializationActions;
-	private Dictionary<InitializationPhases, System.Action> initializationActions = new Dictionary<InitializationPhases, System.Action>();
-
-
-	private void Awake()
-	{
-		initializationActions.Add(InitializationPhases.FIRST, ManagedInitialize);
-	}
+	public Dictionary<InitializationPhases, System.Action> InitializationActions =>
+			new Dictionary<InitializationPhases, System.Action>()
+			{
+				[InitializationPhases.FIRST] = ManagedInitialize
+			};
  */

@@ -19,17 +19,14 @@ namespace SGJ2019
 		public CardExecutionState ExecutionState => executionState;
 		public TurnPhase Ownership => ownership;
 
+		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
+			new Dictionary<InitializationPhases, System.Action>()
+			{
+				[InitializationPhases.FIRST] = ManagedInitialize
+			};
 
-		public Dictionary<InitializationPhases, System.Action> InitializationActions => initializationActions;
-		protected Dictionary<InitializationPhases, System.Action> initializationActions = new Dictionary<InitializationPhases, System.Action>();
 
-
-		protected virtual void Awake()
-		{
-			initializationActions.Add(InitializationPhases.LAST, ManagedInitialize);
-		}
-
-		protected void ManagedInitialize()
+		protected virtual void ManagedInitialize()
 		{
 			TurnManager.Instance.OnTurnEnd += OnTurnEnd;
 			TurnManager.Instance.RegisterTurnManagedCard(this);

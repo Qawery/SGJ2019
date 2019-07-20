@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 1712641971}
   - component: {fileID: 7050837321652983690}
   - component: {fileID: 3436335555626289086}
-  - component: {fileID: 5344323206482236626}
+  - component: {fileID: 1825699168}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -518,8 +518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 0
-  m_DragThreshold: 10
---- !u!114 &5344323206482236626
+  m_DragThreshold: 0
+--- !u!114 &1825699168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -528,13 +528,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3341294394014406832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 08e998e275125f14a84834f4a1b0471a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Null
-  m_VerticalAxis: Null
-  m_SubmitButton: Null
-  m_CancelButton: Null
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
