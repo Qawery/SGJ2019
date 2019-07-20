@@ -60,8 +60,8 @@ namespace SGJ2019
 		{
 			DontDestroyOnLoad(this.gameObject);
 			SceneManager.sceneLoaded += SceneLoaded;
-			LifecycleComponent.OnLifecycleComponentCreated += OnLifecycleComponentCreated;
-			LifecycleComponent.OnLifecycleComponentDestroyed += OnLifecycleComponentDestroyed;
+			LifecycleComponent.GlobalOnLifecycleComponentCreated += OnLifecycleComponentCreated;
+			LifecycleComponent.GlobalOnLifecycleComponentDestroyed += OnLifecycleComponentDestroyed;
 		}
 
 		//TODO: Managing persistent components
