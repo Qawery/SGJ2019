@@ -53,12 +53,21 @@ namespace SGJ2019
 
 		public void ManagedDestruction()
 		{
+			if (card != null)
+			{
+				Destroy(card.gameObject);
+				RemoveCard();
+			}
 			InputManager.Instance.OnCardSlotSelectionChange -= OnSlotSelected;
 		}
 
 		public void RemoveCard()
 		{
-			card = null;
+			if (card != null)
+			{
+				card.LifecycleComponent.OnLifecycleComponentDestroyed -= OnCardDestroyed;
+				card = null;
+			}
 		}
 
 		public void PlaceCard(Card newCard)
@@ -68,6 +77,13 @@ namespace SGJ2019
 			card = newCard;
 			card.transform.SetParent(transform, false);
 			card.transform.position = transform.position;
+			card.LifecycleComponent.OnLifecycleComponentDestroyed += OnCardDestroyed;
+		}
+
+		private void OnCardDestroyed(LifecycleComponent lifecycleComponent)
+		{
+			RemoveCard();
+			Destroy(gameObject);
 		}
 
 		public void OnPointerClick(PointerEventData eventData)

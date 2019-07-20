@@ -13,21 +13,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
---- !u!114 &6102692027222176920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7306022264220569384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82b0b1b287f99c4f934ac9ff84fd4ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: {fileID: 6980901279377385730}
-  description: {fileID: 1365621938167749477}
-  ownership: 0
 --- !u!114 &8697715306361422536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,61 +144,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_text
-      value: Player Soldier
-      objectReference: {fileID: 0}
-    - target: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 905491453797068659, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_text
-      value: Soldier
-      objectReference: {fileID: 0}
-    - target: {fileID: 905491453797068659, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 905491453797068659, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 905491453797068659, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 905491453797068659, guid: 362acf5c0e125e04bb7eb51914a876dc,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 521386559635068380, guid: 362acf5c0e125e04bb7eb51914a876dc,
         type: 3}
       propertyPath: m_Color.r
@@ -237,27 +167,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7814263310100072049}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6980901279377385730 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 905491453797068659, guid: 362acf5c0e125e04bb7eb51914a876dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814263310100072049}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1365621938167749477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9115988229199895828, guid: 362acf5c0e125e04bb7eb51914a876dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7814263310100072049}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

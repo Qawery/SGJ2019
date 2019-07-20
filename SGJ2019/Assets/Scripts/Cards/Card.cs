@@ -6,12 +6,29 @@ using System.Collections.Generic;
 namespace SGJ2019
 {
 	[DisallowMultipleComponent]
-	public abstract class Card : MonoBehaviour, IManagedInitialization, IManagedDestroy
+	public abstract class Card : MonoBehaviour, IManagedInitialization, IManagedDestroy, ILifecycleBound
 	{
 		[SerializeField] private TMPro.TextMeshProUGUI cardName = null;
 		[SerializeField] protected TMPro.TextMeshProUGUI description = null;
 		[SerializeField] protected OwnerPhase ownership = OwnerPhase.HUMAN;
+		private LifecycleComponent lifecycleComponent = null;
 
+
+		public LifecycleComponent LifecycleComponent
+		{
+			get
+			{
+				return lifecycleComponent;
+			}
+
+			set
+			{
+				if (lifecycleComponent == null)
+				{
+					lifecycleComponent = value;
+				}
+			}
+		}
 
 		public OwnerPhase Ownership => ownership;
 

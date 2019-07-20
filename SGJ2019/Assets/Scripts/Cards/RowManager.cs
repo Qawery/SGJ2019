@@ -25,7 +25,9 @@ namespace SGJ2019
 		{
 			Assert.IsNotNull(newCard);
 			Assert.IsTrue(index >= 0 && index <= currentCardSlots.Count);
-			currentCardSlots.Add(Instantiate(cardSlotPrefab, transform));
+			var newCardSlot = Instantiate(cardSlotPrefab, transform);
+			newCardSlot.LifecycleComponent.OnLifecycleComponentDestroyed += OnSlotDestroyed;
+			currentCardSlots.Add(newCardSlot);
 			currentCardSlots[currentCardSlots.Count - 1].PlaceCard(newCard);
 			if (index != currentCardSlots.Count - 1)
 			{
@@ -123,6 +125,7 @@ namespace SGJ2019
 		{
 			Assert.IsTrue(index >= 0 && index <= currentCardSlots.Count - 1);
 			currentCardSlots[index].RemoveCard();
+			currentCardSlots[index].LifecycleComponent.OnLifecycleComponentDestroyed -= OnSlotDestroyed;
 			Destroy(currentCardSlots[index].gameObject);
 			currentCardSlots.RemoveAt(index);
 		}
@@ -139,6 +142,7 @@ namespace SGJ2019
 			Assert.IsTrue(currentCardSlots.Contains(slotWithCard));
 			slotWithCard.RemoveCard();
 			currentCardSlots.Remove(slotWithCard);
+			slotWithCard.LifecycleComponent.OnLifecycleComponentDestroyed -= OnSlotDestroyed;
 			Destroy(slotWithCard.gameObject);
 		}
 
@@ -181,6 +185,11 @@ namespace SGJ2019
 		{
 			Assert.IsTrue(index >= 0 && index < currentCardSlots.Count);
 			return currentCardSlots[index].Card;
+		}
+
+		private void OnSlotDestroyed(LifecycleComponent lifecycleComponent)
+		{
+			RemoveCard(lifecycleComponent.GetComponent<CardSlot>());
 		}
 	}
 }

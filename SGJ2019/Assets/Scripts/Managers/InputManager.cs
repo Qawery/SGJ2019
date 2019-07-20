@@ -30,7 +30,7 @@ namespace SGJ2019
 				{
 					Assert.IsNotNull(SelectedCardSlot);
 					Assert.IsTrue(SelectedCardSlot.Card.Ownership == OwnerPhase.HUMAN);
-					var playerOwnedCard = SelectedCardSlot.Card as PlayerOwnedCard;
+					var playerOwnedCard = SelectedCardSlot.Card as IActionProvider;
 					Assert.IsNotNull(playerOwnedCard);
 					var availableActions = playerOwnedCard.GetAvailableActions();
 					Assert.IsTrue(value >= 0 && value < availableActions.Count);
@@ -65,7 +65,7 @@ namespace SGJ2019
 					selectedCardSlot.LifecycleComponent.OnLifecycleComponentDestroyed += OnSelectedCardDestroyed;
 					if (SelectedCardSlot.Card.Ownership == OwnerPhase.HUMAN)
 					{
-						var playerOwnedCard = SelectedCardSlot.Card as PlayerOwnedCard;
+						var playerOwnedCard = SelectedCardSlot.Card as IActionProvider;
 						Assert.IsNotNull(playerOwnedCard);
 						if (playerOwnedCard.GetAvailableActions().Count > 0)
 						{
@@ -145,7 +145,7 @@ namespace SGJ2019
 
 		private void ProcessAction(CardSlot otherSlot)
 		{
-			var playerOwnedCard = SelectedCardSlot.Card as PlayerOwnedCard;
+			var playerOwnedCard = SelectedCardSlot.Card as IActionProvider;
 			var availableActions = playerOwnedCard.GetAvailableActions();
 			availableActions[SelectedActionIndex].ExecuteAction(SelectedCardSlot, otherSlot);
 			SelectedCardSlot = null;
@@ -160,7 +160,7 @@ namespace SGJ2019
 		{
 			if (SelectedCardSlot != null && SelectedCardSlot.Card.Ownership == OwnerPhase.HUMAN)
 			{
-				var playerOwnedCard = SelectedCardSlot.Card as PlayerOwnedCard;
+				var playerOwnedCard = SelectedCardSlot.Card as IActionProvider;
 				Assert.IsNotNull(playerOwnedCard);
 				return playerOwnedCard.GetAvailableActions();
 			}
