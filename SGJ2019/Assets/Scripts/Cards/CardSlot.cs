@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
@@ -6,8 +7,12 @@ using System.Collections.Generic;
 
 namespace SGJ2019
 {
-	public class CardSlot : MonoBehaviour, IManagedInitialization, ILifecycleBound, IPointerClickHandler
+	[RequireComponent(typeof(Button))]
+	public class CardSlot : MonoBehaviour, IManagedInitialization, IManagedDestroy, ILifecycleBound, IPointerClickHandler
 	{
+		private ColorBlock defaultColorBlock;
+		private ColorBlock selectedColorBlock;
+		private Button button = null;
 		public static System.Action<CardSlot> OnSlotClicked;
 		private Card card = null;
 		private LifecycleComponent lifecycleComponent = null;
@@ -39,6 +44,16 @@ namespace SGJ2019
 		private void ManagedInitialize()
 		{
 			GetComponent<Canvas>().worldCamera = GlobalPrefabLibrary.Instance.MainCamera;
+			InputManager.Instance.OnCardSlotSelectionChange += OnSlotSelected;
+			button = GetComponent<Button>();
+			defaultColorBlock = button.colors;
+			selectedColorBlock = button.colors;
+			selectedColorBlock.normalColor = selectedColorBlock.pressedColor;
+		}
+
+		public void ManagedDestruction()
+		{
+			InputManager.Instance.OnCardSlotSelectionChange -= OnSlotSelected;
 		}
 
 		public void RemoveCard()
@@ -58,6 +73,18 @@ namespace SGJ2019
 		public void OnPointerClick(PointerEventData eventData)
 		{
 			OnSlotClicked?.Invoke(this);
+		}
+
+		private void OnSlotSelected(CardSlot previous, CardSlot current)
+		{
+			if (current == this)
+			{
+				button.colors = selectedColorBlock;
+			}
+			else
+			{
+				button.colors = defaultColorBlock;
+			}
 		}
 	}
 }

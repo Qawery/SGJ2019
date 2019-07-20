@@ -8,7 +8,7 @@ namespace SGJ2019
 	public delegate void CardSlotSelectionChange(CardSlot previous, CardSlot current);
 	public class InputManager : SimpleSingleton<InputManager>, IManagedInitialization
 	{
-		public static event CardSlotSelectionChange OnCardSlotSelectionChange;
+		public event CardSlotSelectionChange OnCardSlotSelectionChange;
 		private CardSlot selectedCardSlot = null;
 		private bool inputBlockade = false;	//HAXOR: na ograniczenie input'u
 
