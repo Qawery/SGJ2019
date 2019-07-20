@@ -26,15 +26,24 @@ namespace SGJ2019
 		{
 			foreach (var componentToInitialize in GetComponents<IManagedInitialization>())
 			{
-				componentsToInitialize.Add(componentToInitialize);
+				if (!componentsToInitialize.Contains(componentToInitialize))
+				{
+					componentsToInitialize.Add(componentToInitialize);
+				}
 			}
 			foreach (var componentToUpdate in GetComponents<IManagedUpdate>())
 			{
-				componentsToUpdate.Add(componentToUpdate);
+				if (!componentsToUpdate.Contains(componentToUpdate))
+				{
+					componentsToUpdate.Add(componentToUpdate);
+				}
 			}
 			foreach (var componentToNotifyOnDestruction in GetComponents<IManagedDestroy>())
 			{
-				componentsToNotifyOnDestruction.Add(componentToNotifyOnDestruction);
+				if (!componentsToNotifyOnDestruction.Contains(componentToNotifyOnDestruction))
+				{
+					componentsToNotifyOnDestruction.Add(componentToNotifyOnDestruction);
+				}
 			}
 			foreach (var lifecycleBoundComponent in GetComponents<ILifecycleBound>())
 			{

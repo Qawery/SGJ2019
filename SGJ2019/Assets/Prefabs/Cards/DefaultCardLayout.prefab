@@ -181,6 +181,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: -1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &5356724455980978976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654679590611208537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7947f63a62bcaac4897a0e9db39c814b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2178333121319038797
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 1451999577965304794, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
       propertyPath: m_Name
-      value: DefaultCard
+      value: DefaultCardLayout
       objectReference: {fileID: 0}
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
@@ -801,6 +813,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e, type: 3}
+--- !u!1 &654679590611208537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1451999577965304794, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2104142489487659651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5279188867538200017 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,

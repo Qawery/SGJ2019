@@ -92,12 +92,14 @@ namespace SGJ2019
 		public void RegisterAICard(AIManagedCard aiCard)
 		{
 			Assert.IsNotNull(aiCard);
+			Assert.IsFalse(aiManagedCards[aiCard.Ownership].Contains(aiCard));
 			aiManagedCards[aiCard.Ownership].Add(aiCard);
 		}
 
 		public void UnregisterAICard(AIManagedCard aiCard)
 		{
 			Assert.IsNotNull(aiCard);
+			Assert.IsTrue(aiManagedCards[aiCard.Ownership].Contains(aiCard));
 			aiManagedCards[aiCard.Ownership].Remove(aiCard);
 		}
 	}

@@ -8,18 +8,23 @@
 
 		public override void ExecuteAction(CardSlot source, CardSlot target)
 		{
-			var rowManager = source.transform.parent.GetComponent<RowManager>();
-			int selectedIndex = rowManager.GetIndexOfCard(source.Card);
-			int otherIndex = rowManager.GetIndexOfCard(target.Card);
-			if (selectedIndex + 1 == otherIndex)
+			var playerCard = (source.Card as PlayerOwnedCard);
+			if (playerCard.currentActionPoints > 0)
 			{
-				rowManager.MoveCardRight(source);
-				source = target;
-			}
-			else if (selectedIndex - 1 == otherIndex)
-			{
-				rowManager.MoveCardLeft(source);
-				source = target;
+				--playerCard.currentActionPoints;
+				var rowManager = source.transform.parent.GetComponent<RowManager>();
+				int selectedIndex = rowManager.GetIndexOfCard(source.Card);
+				int otherIndex = rowManager.GetIndexOfCard(target.Card);
+				if (selectedIndex + 1 == otherIndex)
+				{
+					rowManager.MoveCardRight(source);
+					source = target;
+				}
+				else if (selectedIndex - 1 == otherIndex)
+				{
+					rowManager.MoveCardLeft(source);
+					source = target;
+				}
 			}
 		}
 	}

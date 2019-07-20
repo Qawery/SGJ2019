@@ -5,8 +5,10 @@ namespace SGJ2019
 {
 	public class PlayerOwnedCard : Card
 	{
+		private const int MAX_HEALTH_POINTS = 5;
+		public int currentHealthPoints = MAX_HEALTH_POINTS;
 		private const int MAX_ACTION_POINTS = 2;
-		private int currentActionPoints = MAX_ACTION_POINTS;
+		public int currentActionPoints = MAX_ACTION_POINTS;
 
 
 		protected override void OnTurnEnd()
@@ -19,6 +21,13 @@ namespace SGJ2019
 			List<Action> result = new List<Action>();
 			result.Add(new MovementAction());
 			return result;
+		}
+
+		private void Update()
+		{
+			description.text =
+				"Health: " + currentHealthPoints.ToString() + "\n" +
+				"Action Points left: " + currentActionPoints.ToString();
 		}
 	}
 }
