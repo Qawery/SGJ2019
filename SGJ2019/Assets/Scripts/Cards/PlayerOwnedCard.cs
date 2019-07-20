@@ -20,6 +20,7 @@ namespace SGJ2019
 		{
 			List<Action> result = new List<Action>();
 			result.Add(new MovementAction());
+			result.Add(new AttackAction());
 			return result;
 		}
 
