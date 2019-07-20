@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SGJ2019
 {
-	public enum TurnPhase
+	public enum OwnerPhase
 	{
 		HUMAN, ENEMY, NATURE
 	}
@@ -14,13 +14,11 @@ namespace SGJ2019
 	public class TurnManager : SimpleSingleton<TurnManager>, IManagedUpdate
 	{
 		public System.Action OnTurnEnd;
-		private Dictionary<TurnPhase, List<TurnManaged>> turnOrderForObjects = new Dictionary<TurnPhase, List<TurnManaged>>();
-		private TurnPhase currentTurnPhase = TurnPhase.HUMAN;
+		private Dictionary<OwnerPhase, List<AIManagedCard>> aiManagedCards = new Dictionary<OwnerPhase, List<AIManagedCard>>();
+		private OwnerPhase currentTurnPhase = OwnerPhase.HUMAN;
 
 
-		public TurnPhase CurrentTurnPhase => currentTurnPhase;
-
-
+		public OwnerPhase CurrentTurnPhase => currentTurnPhase;
 		public Dictionary<UpdatePhases, System.Action> UpdateActions => updateActions;
 		private Dictionary<UpdatePhases, System.Action> updateActions = new Dictionary<UpdatePhases, System.Action>();
 
@@ -33,17 +31,17 @@ namespace SGJ2019
 				return;
 			}
 			updateActions.Add(UpdatePhases.FIRST, ManagedUpdate);
-			for (int i = 1; i < Enum.GetValues(typeof(TurnPhase)).Length; ++i)
+			for (int i = 1; i < Enum.GetValues(typeof(OwnerPhase)).Length; ++i)
 			{
-				turnOrderForObjects.Add((TurnPhase) i, new List<TurnManaged>());
+				aiManagedCards.Add((OwnerPhase) i, new List<AIManagedCard>());
 			}
 		}
 
 		private void ManagedUpdate()
 		{
-			if (currentTurnPhase != TurnPhase.HUMAN)
+			if (currentTurnPhase != OwnerPhase.HUMAN)
 			{
-				foreach (var card in turnOrderForObjects[currentTurnPhase])
+				foreach (var card in aiManagedCards[currentTurnPhase])
 				{
 					if (card.ExecutionState == CardExecutionState.DONE)
 					{
@@ -71,10 +69,10 @@ namespace SGJ2019
 						return;
 					}
 				}
-				if (currentTurnPhase == TurnPhase.NATURE)
+				if (currentTurnPhase == OwnerPhase.NATURE)
 				{
 					OnTurnEnd?.Invoke();
-					currentTurnPhase = TurnPhase.HUMAN;
+					currentTurnPhase = OwnerPhase.HUMAN;
 				}
 				else
 				{
@@ -85,22 +83,22 @@ namespace SGJ2019
 
 		public void EndPlayerTurn()
 		{
-			if (currentTurnPhase == TurnPhase.HUMAN)
+			if (currentTurnPhase == OwnerPhase.HUMAN)
 			{
-				currentTurnPhase = TurnPhase.ENEMY;
+				currentTurnPhase = OwnerPhase.ENEMY;
 			}
 		}
 
-		public void RegisterTurnManagedCard(TurnManaged turnManagedCard)
+		public void RegisterAICard(AIManagedCard aiCard)
 		{
-			Assert.IsNotNull(turnManagedCard);
-			turnOrderForObjects[turnManagedCard.Ownership].Add(turnManagedCard);
+			Assert.IsNotNull(aiCard);
+			aiManagedCards[aiCard.Ownership].Add(aiCard);
 		}
 
-		public void UnregisterTurnManagedCard(TurnManaged turnManagedCard)
+		public void UnregisterAICard(AIManagedCard aiCard)
 		{
-			Assert.IsNotNull(turnManagedCard);
-			turnOrderForObjects[turnManagedCard.Ownership].Remove(turnManagedCard);
+			Assert.IsNotNull(aiCard);
+			aiManagedCards[aiCard.Ownership].Remove(aiCard);
 		}
 	}
 }

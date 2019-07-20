@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
+using System.Collections.Generic;
 
 
 namespace SGJ2019
@@ -8,8 +9,7 @@ namespace SGJ2019
 	{
 		[SerializeField] private Camera mainCamera = null;
 		public Camera MainCamera => mainCamera;
-		[SerializeField] private CardsLibrary cardsLibrary = null;
-		public CardsLibrary CardsLibrary => cardsLibrary;
+		public List<Card> cardPrefabs = new List<Card>();
 
 
 		protected override void Awake()
@@ -20,7 +20,8 @@ namespace SGJ2019
 				return;
 			}
 			Assert.IsNotNull(mainCamera);
-			Assert.IsNotNull(cardsLibrary);
+			Assert.IsNotNull(cardPrefabs);
+			Assert.IsTrue(cardPrefabs.Count > 0);
 		}
 	}
 }

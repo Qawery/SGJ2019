@@ -14,7 +14,11 @@ namespace SGJ2019
 		private void Awake()
 		{
 			Assert.IsNotNull(cardSlotPrefab);
-			Assert.IsTrue(transform.childCount == 0);
+			Assert.IsTrue(GetComponentsInChildren<CardSlot>().Length == 0);
+			foreach (var startingCard in GetComponentsInChildren<Card>())
+			{
+				AddCardToRowOnRight(startingCard);
+			}
 		}
 
 		public void AddCardToRowOnIndex(int index, Card newCard)
