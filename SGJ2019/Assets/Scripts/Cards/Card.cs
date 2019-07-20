@@ -9,12 +9,10 @@ namespace SGJ2019
 	public class Card : MonoBehaviour
 	{
 		[SerializeField] private string cardId = "";
+		public string CardId => cardId;
 		[SerializeField] private TMPro.TextMeshProUGUI title = null;
 		[SerializeField] private Image image = null;
 		[SerializeField] private TMPro.TextMeshProUGUI description = null;
-
-
-		public string CardId => cardId;
 
 
 		private void Awake()

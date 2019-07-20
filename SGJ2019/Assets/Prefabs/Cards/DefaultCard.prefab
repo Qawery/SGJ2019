@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6132076, g: 0.17644179, b: 0.17644179, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -708,7 +708,7 @@ PrefabInstance:
     - target: {fileID: 1451999577965304794, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
       propertyPath: m_Name
-      value: NewCard
+      value: DefaultCard
       objectReference: {fileID: 0}
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
@@ -788,22 +788,22 @@ PrefabInstance:
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6084389759020988242, guid: a6b66f45d2dc7a748bdf2ca7a5fe813e,
         type: 3}

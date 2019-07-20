@@ -6,6 +6,8 @@ namespace SGJ2019
 {
 	public class GlobalPrefabLibrary : SimpleSingleton<GlobalPrefabLibrary>
 	{
+		[SerializeField] private Camera mainCamera = null;
+		public Camera MainCamera => mainCamera;
 		[SerializeField] private CardsLibrary cardsLibrary = null;
 		public CardsLibrary CardsLibrary => cardsLibrary;
 
@@ -17,6 +19,7 @@ namespace SGJ2019
 				Destroy(gameObject);
 				return;
 			}
+			Assert.IsNotNull(mainCamera);
 			Assert.IsNotNull(cardsLibrary);
 		}
 	}

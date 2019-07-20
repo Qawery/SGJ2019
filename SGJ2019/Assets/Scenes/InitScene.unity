@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &48103882 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5456910882552842310, guid: d3e055abb99cd674cb479cce63697b81,
+    type: 3}
+  m_PrefabInstance: {fileID: 3341294392892553418}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &657126140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -558,7 +564,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1691047323
 MonoBehaviour:
@@ -848,7 +854,7 @@ PrefabInstance:
     - target: {fileID: 5279188867538200017, guid: 362acf5c0e125e04bb7eb51914a876dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5279188867538200017, guid: 362acf5c0e125e04bb7eb51914a876dc,
         type: 3}
@@ -1049,6 +1055,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7985323854976449669, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 48103882}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3e055abb99cd674cb479cce63697b81, type: 3}
 --- !u!1001 &6684187559357384489
