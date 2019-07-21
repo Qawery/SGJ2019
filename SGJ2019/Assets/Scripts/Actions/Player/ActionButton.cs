@@ -60,7 +60,10 @@ namespace SGJ2019
 
 		private void OnDestroy()
 		{
-			InputManager.Instance.OnSelectedActionIndexChange -= OnSelectedActionIndexChange;
+			if (InputManager.Instance != null)
+			{
+				InputManager.Instance.OnSelectedActionIndexChange -= OnSelectedActionIndexChange;
+			}
 		}
 	}
 }

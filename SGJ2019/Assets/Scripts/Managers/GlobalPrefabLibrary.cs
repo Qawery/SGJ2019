@@ -8,6 +8,8 @@ namespace SGJ2019
 	{
 		[SerializeField] private Camera mainCamera = null;
 		public Camera MainCamera => mainCamera;
+		[SerializeField] private FloatingNumber floatingNumber = null;
+		public FloatingNumber FloatingNumber => floatingNumber;
 
 
 		protected override void ManagedInitialize()
@@ -16,6 +18,7 @@ namespace SGJ2019
 			if (Instance == this)
 			{
 				Assert.IsNotNull(mainCamera);
+				Assert.IsNotNull(floatingNumber);
 			}
 		}
 	}

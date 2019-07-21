@@ -100,14 +100,13 @@ namespace SGJ2019
 			if (multiplyChance >= 0.0f && healthCompnent.CurrentHealth > 1 && Random.Range(0.0f, 1.0f) <= multiplyChance)
 			{
 				var clone = Instantiate(this);
-				row.AddCardToRowOnLeft(clone);
+				row.AddCardToRowOnIndex(ourIndex, clone);
 				clone.ForcePass();
 				healthCompnent.Damage(healthCompnent.CurrentHealth / 2);
 				return;
 			}
 
 			//Walking
-			//TODO: omijanie się
 			if (FacingLeft && ourIndex == 0)
 			{
 				FacingLeft = !FacingLeft;
@@ -119,14 +118,22 @@ namespace SGJ2019
 			nearCard = FacingLeft ? row.GetCardOnLeftOfIndex(ourIndex) : row.GetCardOnRightOfIndex(ourIndex);
 			if (nearCard != null)
 			{
-				int destinationIndex = row.GetIndexOfCard(nearCard);
-				if (ourIndex < destinationIndex)
+				var otherMonster = nearCard.GetComponent<Monster>();
+				if (otherMonster != null && otherMonster.ExecutionState == CardExecutionState.READY)
 				{
-					row.MoveCardRight(this);
+					executionState = CardExecutionState.WAITING;
 				}
-				else if (ourIndex > destinationIndex)
+				else
 				{
-					row.MoveCardLeft(this);
+					int destinationIndex = row.GetIndexOfCard(nearCard);
+					if (ourIndex < destinationIndex)
+					{
+						row.MoveCardRight(this);
+					}
+					else if (ourIndex > destinationIndex)
+					{
+						row.MoveCardLeft(this);
+					}
 				}
 			}
 			else

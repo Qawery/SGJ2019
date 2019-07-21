@@ -28,7 +28,10 @@ namespace SGJ2019
 
 		public void ManagedDestruction()
 		{
-			TurnManager.Instance.OnTurnEnd -= OnTurnEnd;
+			if (TurnManager.Instance != null)
+			{
+				TurnManager.Instance.OnTurnEnd -= OnTurnEnd;
+			}
 		}
 
 		private void OnTurnEnd()

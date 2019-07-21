@@ -3635,10 +3635,30 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6346406978510124189, guid: d3e055abb99cd674cb479cce63697b81,
+    - target: {fileID: 7011652717045442639, guid: d3e055abb99cd674cb479cce63697b81,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 350
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011652717045442639, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011652717045442639, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011652717045442639, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861230643479482456, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -192.30005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3e055abb99cd674cb479cce63697b81, type: 3}

@@ -58,7 +58,10 @@ namespace SGJ2019
 				Destroy(card.gameObject);
 				RemoveCard();
 			}
-			InputManager.Instance.OnCardSlotSelectionChange -= OnSlotSelected;
+			if (InputManager.Instance != null)
+			{
+				InputManager.Instance.OnCardSlotSelectionChange -= OnSlotSelected;
+			}
 		}
 
 		public void RemoveCard()

@@ -42,7 +42,14 @@ namespace SGJ2019
 
 			private set
 			{
-				Assert.IsNull(instance, "LifecycleManager instance already set to " + instance.gameObject.name);
+				if (value != null)
+				{
+					Assert.IsNull(instance);
+				}
+				else
+				{
+					Assert.IsNotNull(instance); ;
+				}
 				instance = value;
 			}
 		}

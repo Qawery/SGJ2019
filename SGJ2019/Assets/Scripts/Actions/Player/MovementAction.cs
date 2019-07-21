@@ -19,6 +19,10 @@ namespace SGJ2019
 				return false;
 			}
 			var rowManager = source.transform.parent.GetComponent<RowManager>();
+			if (rowManager != target.transform.parent.GetComponent<RowManager>())
+			{
+				return false;
+			}
 			int selectedIndex = rowManager.GetIndexOfCard(source.Card);
 			int otherIndex = rowManager.GetIndexOfCard(target.Card);
 			return Mathf.Abs(selectedIndex - otherIndex) == 1;

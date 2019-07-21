@@ -33,12 +33,20 @@ namespace SGJ2019
 			{
 				Destroy(gameObject);
 			}
+			var floatingNumber = Instantiate(GlobalPrefabLibrary.Instance.FloatingNumber, currentHealth > 0 ? transform : null).GetComponent<FloatingNumber>();
+			floatingNumber.Text.text = ammount.ToString();
+			floatingNumber.Text.color = Color.red;
+			floatingNumber.transform.position = transform.position;
 		}
 
 		public void Heal(int ammount)
 		{
 			Assert.IsTrue(ammount > 0);
 			currentHealth = Mathf.Min(currentHealth + ammount, maxHealth);
+			var floatingNumber = Instantiate(GlobalPrefabLibrary.Instance.FloatingNumber, transform).GetComponent<FloatingNumber>();
+			floatingNumber.Text.text = ammount.ToString();
+			floatingNumber.Text.color = Color.green;
+			floatingNumber.transform.position = transform.position;
 		}
 	}
 }

@@ -60,7 +60,10 @@ namespace SGJ2019
 
 		private void OnDestroy()
 		{
-			InputManager.Instance.OnCardSlotSelectionChange -= OnCardSlotSelectionChange;
+			if (InputManager.Instance != null)
+			{
+				InputManager.Instance.OnCardSlotSelectionChange -= OnCardSlotSelectionChange;
+			}
 		}
 	}
 }
