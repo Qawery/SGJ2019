@@ -27,6 +27,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heavy
       objectReference: {fileID: 0}
+    - target: {fileID: 219403304917236742, guid: bcb11de4fd5234143946f0524f58c1be,
+        type: 3}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2680386533469299616, guid: bcb11de4fd5234143946f0524f58c1be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -157,11 +162,12 @@ PrefabInstance:
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 219403304917236742, guid: bcb11de4fd5234143946f0524f58c1be,
+    - target: {fileID: 7731978266173772717, guid: bcb11de4fd5234143946f0524f58c1be,
         type: 3}
-      propertyPath: maxHealth
-      value: 6
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4cbcd446893f983469624364ec03545c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb11de4fd5234143946f0524f58c1be, type: 3}
 --- !u!1 &7024146300867340549 stripped

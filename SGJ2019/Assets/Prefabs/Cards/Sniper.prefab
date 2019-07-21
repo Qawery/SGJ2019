@@ -162,6 +162,12 @@ PrefabInstance:
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7731978266173772717, guid: bcb11de4fd5234143946f0524f58c1be,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fdfff5068cd32944e9b84f7b3182d3be,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb11de4fd5234143946f0524f58c1be, type: 3}
 --- !u!1 &9118437799460299328 stripped
