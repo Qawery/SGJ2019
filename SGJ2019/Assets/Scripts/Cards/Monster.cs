@@ -84,6 +84,7 @@ namespace SGJ2019
 				Assert.IsNotNull(soldier);
 				int damage = minDamage + (int)Mathf.Round((maxDamage - minDamage) * Random.Range(0.0f, 1.0f));
 				soldier.HealthCompnent.Damage(damage);
+				Utilities.SpawnFloatingText("Attack", Color.grey, transform);
 				LogManager.Instance.AddMessage(CardName + " attacked " + soldier.CardName + " for " + damage.ToString() + " damage");
 				return;
 			}
@@ -91,6 +92,7 @@ namespace SGJ2019
 			//Healing
 			if (healChance >= 0.0f && healthCompnent.CurrentHealth < healthCompnent.MaxHealth && Random.Range(0.0f, 1.0f) <= healChance)
 			{
+				Utilities.SpawnFloatingText("Heal", Color.grey, transform);
 				healthCompnent.Heal(1 + (int)Mathf.Round(Random.Range(0.0f, 1.0f)));
 				return;
 			}
@@ -102,11 +104,12 @@ namespace SGJ2019
 				var clone = Instantiate(this);
 				row.AddCardToRowOnIndex(ourIndex, clone);
 				clone.ForcePass();
+				Utilities.SpawnFloatingText("Multiply", Color.grey, transform);
 				healthCompnent.Damage(healthCompnent.CurrentHealth / 2);
 				return;
 			}
 
-			//Walking
+			//Movement
 			if (FacingLeft && ourIndex == 0)
 			{
 				FacingLeft = !FacingLeft;
@@ -134,10 +137,12 @@ namespace SGJ2019
 					{
 						row.MoveCardLeft(this);
 					}
+					Utilities.SpawnFloatingText("Move", Color.grey, transform);
 				}
 			}
 			else
 			{
+				Utilities.SpawnFloatingText("Wait", Color.grey, transform);
 				LogManager.Instance.AddMessage(this.CardName + " is waiting");
 			}
 		}

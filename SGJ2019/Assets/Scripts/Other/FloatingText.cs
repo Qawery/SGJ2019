@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 namespace SGJ2019
 {
-	public class FloatingNumber : MonoBehaviour
+	public class FloatingText : MonoBehaviour
 	{
 		[SerializeField] private TMPro.TextMeshProUGUI text = null;
 		public TMPro.TextMeshProUGUI Text => text;

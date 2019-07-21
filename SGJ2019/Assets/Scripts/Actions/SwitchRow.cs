@@ -1,4 +1,7 @@
-﻿namespace SGJ2019
+﻿using UnityEngine;
+
+
+namespace SGJ2019
 {
 	public class SwitchRow : PlayerAction
 	{
@@ -29,6 +32,7 @@
 			if (IsActionPossible(source, target))
 			{
 				var actionPoints = source.Card.GetComponent<ActionPointsComponent>();
+				Utilities.SpawnFloatingText("Switch row", Color.grey, source.Card.transform);
 				if (actionPoints != null)
 				{
 					actionPoints.Spend(Cost);
@@ -43,7 +47,7 @@
 				{
 					targetRowManager.AddCardToRowOnRight(source.Card);
 				}
-				source.transform.parent.GetComponent<RowManager>().RemoveCard(source); ;
+				source.transform.parent.GetComponent<RowManager>().RemoveCard(source);
 			}
 		}
 	}

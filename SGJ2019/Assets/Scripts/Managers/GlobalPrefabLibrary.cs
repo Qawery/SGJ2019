@@ -8,8 +8,8 @@ namespace SGJ2019
 	{
 		[SerializeField] private Camera mainCamera = null;
 		public Camera MainCamera => mainCamera;
-		[SerializeField] private FloatingNumber floatingNumber = null;
-		public FloatingNumber FloatingNumber => floatingNumber;
+		[SerializeField] private FloatingText floatingNumber = null;
+		public FloatingText FloatingNumber => floatingNumber;
 
 
 		protected override void ManagedInitialize()

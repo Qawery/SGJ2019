@@ -40,6 +40,7 @@ namespace SGJ2019
 				var rowManager = source.transform.parent.GetComponent<RowManager>();
 				int sourceIndex = rowManager.GetIndexOfCard(source.Card);
 				int targetIndex = rowManager.GetIndexOfCard(target.Card);
+				Utilities.SpawnFloatingText("Move", Color.grey, source.Card.transform);
 				if (sourceIndex < targetIndex)
 				{
 					rowManager.MoveCardRight(source);
