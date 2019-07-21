@@ -117,12 +117,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 407098151001371601, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
+    - target: {fileID: 6517591325714178056, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b88867419da65ed4fb06c43d1e23a286,
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
+      propertyPath: multiplyChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
+        type: 3}
+      propertyPath: minDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
+        type: 3}
+      propertyPath: maxDamage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
+        type: 3}
+      propertyPath: healChance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1011876577126402430, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
       propertyPath: m_text
@@ -138,25 +157,11 @@ PrefabInstance:
       propertyPath: m_textInfo.spaceCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
+    - target: {fileID: 407098151001371601, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
-      propertyPath: multiplyChance
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88867419da65ed4fb06c43d1e23a286,
         type: 3}
-      propertyPath: minDamage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
-        type: 3}
-      propertyPath: maxDamage
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517591325714178056, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
-        type: 3}
-      propertyPath: maxHealth
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89ad3d051f9b1d449b9de4d793dc2c92, type: 3}

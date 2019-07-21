@@ -11,7 +11,7 @@ namespace SGJ2019
 		[SerializeField] private int minDamage = 1;
 		[SerializeField] private int maxDamage = 2;
 		[SerializeField] private float healChance = 0.3f;
-		[SerializeField] private float multiplyChance = 0.1f;
+		[SerializeField] private float multiplyChance = 0.0f;
 		[SerializeField] private Image leftArrow = null;
 		[SerializeField] private Image rightArrow = null;
 		private bool facingLeft = false;
@@ -51,7 +51,7 @@ namespace SGJ2019
 			Assert.IsTrue(maxDamage >= 1);
 			Assert.IsTrue(maxDamage >= minDamage);
 			Assert.IsTrue(healChance <= 1.0f);
-			Assert.IsTrue(multiplyChance <= 1.0f);
+			Assert.IsTrue(multiplyChance >= 0.0f && multiplyChance <= 1.0f);
 			Assert.IsTrue(ownership == OwnerPhase.ENEMY);
 			FacingLeft = Random.Range(0.0f, 1.0f) >= 0.5f;
 		}
@@ -93,7 +93,7 @@ namespace SGJ2019
 
 
 			//Multiplying
-			if (multiplyChance >= 0.0f && healthCompnent.CurrentHealth > 1 && Random.Range(0.0f, 1.0f) <= multiplyChance)
+			if (multiplyChance > 0.0f && healthCompnent.CurrentHealth > 1 && Random.Range(0.0f, 1.0f) <= multiplyChance)
 			{
 				var clone = Instantiate(this);
 				row.AddCardToRowOnIndex(ourIndex, clone);
