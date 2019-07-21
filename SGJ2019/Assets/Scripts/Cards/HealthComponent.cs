@@ -16,7 +16,7 @@ namespace SGJ2019
 		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
 			new Dictionary<InitializationPhases, System.Action>()
 			{
-				[InitializationPhases.FIRST] = ManagedInitialize
+				[InitializationPhases.EARLY] = ManagedInitialize
 			};
 		
 

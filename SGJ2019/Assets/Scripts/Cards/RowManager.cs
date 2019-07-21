@@ -15,7 +15,7 @@ namespace SGJ2019
 		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
 				new Dictionary<InitializationPhases, System.Action>()
 				{
-					[InitializationPhases.LAST] = ManagedInitialize
+					[InitializationPhases.LATE] = ManagedInitialize
 				};
 
 
@@ -23,7 +23,6 @@ namespace SGJ2019
 		{
 			Assert.IsNotNull(cardSlotPrefab);
 			Assert.IsTrue(GetComponentsInChildren<CardSlot>().Length == 0);
-			var test = GetComponentsInChildren<Card>();
 			foreach (var startingCard in GetComponentsInChildren<Card>())
 			{
 				AddCardToRowOnRight(startingCard);

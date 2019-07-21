@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SGJ2019
 {
 	public delegate void CardSlotSelectionChange(CardSlot previous, CardSlot current);
-	public class InputManager : SimpleSingleton<InputManager>, IManagedInitialization
+	public class InputManager : SimpleSingleton<InputManager>
 	{
 		private const int NO_ACTION = -1;
 		[SerializeField] private TextBox logText = null;

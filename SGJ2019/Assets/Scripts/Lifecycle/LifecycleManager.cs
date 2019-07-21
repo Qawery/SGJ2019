@@ -9,7 +9,7 @@ namespace SGJ2019
 {
 	public enum InitializationPhases
 	{
-		FIRST, TURN_MANAGER, LAST
+		SINGLETON_SETUP, EARLY, TURN_MANAGER, LATE
 	}
 
 

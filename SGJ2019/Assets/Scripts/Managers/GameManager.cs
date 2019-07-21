@@ -12,30 +12,28 @@ namespace SGJ2019
 	}
 
 
-	public class GameManager : MonoBehaviour, IManagedInitialization, IManagedDestroy
+	public class GameManager : SimpleSingleton<GameManager>
 	{
 		private GameState gameState = GameState.ONGOING;
 		public GameState GameState => gameState;
 		[SerializeField] private float loadSceneTime = 2.0f;
 		[SerializeField] private int roundLimit = 20;
+		public int RoundLimit => roundLimit;
 		private List<Card> monsters = new List<Card>();
 		private List<Card> soldiers = new List<Card>();
 		[SerializeField] private TextBox textBox = null;
 
 
-		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
-				new Dictionary<InitializationPhases, System.Action>()
-				{
-					[InitializationPhases.FIRST] = ManagedInitialize
-				};
-
-
-		private void ManagedInitialize()
+		protected override void ManagedInitialize()
 		{
-			Assert.IsNotNull(textBox);
-			foreach (var card in FindObjectsOfType<Card>())
+			base.ManagedInitialize();
+			if (Instance == this)
 			{
-				TryAddCard(card);
+				Assert.IsNotNull(textBox);
+				foreach (var card in FindObjectsOfType<Card>())
+				{
+					TryAddCard(card);
+				}
 			}
 		}
 
@@ -69,7 +67,7 @@ namespace SGJ2019
 			}
 		}
 
-		public void ManagedDestruction()
+		public override void ManagedDestruction()
 		{
 			foreach (var monster in monsters)
 			{

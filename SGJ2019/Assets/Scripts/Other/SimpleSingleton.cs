@@ -5,15 +5,16 @@ using System.Collections.Generic;
 
 namespace SGJ2019
 {
-	public class SimpleSingleton<T> : MonoBehaviour, IManagedInitialization where T : MonoBehaviour
+	public class SimpleSingleton<T> : MonoBehaviour, IManagedInitialization, IManagedDestroy where T : MonoBehaviour
 	{
+		private static bool isSceneBeingReloaded = false;
 		private static T instance = null;
 
 
 		public virtual Dictionary<InitializationPhases, System.Action> InitializationActions =>
 				new Dictionary<InitializationPhases, System.Action>()
 				{
-					[InitializationPhases.FIRST] = ManagedInitialize
+					[InitializationPhases.SINGLETON_SETUP] = ManagedInitialize
 				};
 		
 
@@ -21,6 +22,10 @@ namespace SGJ2019
 		{
 			get
 			{
+				if (isSceneBeingReloaded)
+				{
+					return null;
+				}
 				if (instance == null)
 				{
 					var foundSingletons = FindObjectsOfType<T>();
@@ -44,6 +49,15 @@ namespace SGJ2019
 			}
 		}
 
+
+		private void Awake()
+		{
+			if (instance == null)
+			{
+				isSceneBeingReloaded = false;
+			}
+		}
+
 		protected virtual void ManagedInitialize()
 		{
 			if (Instance != this)
@@ -53,10 +67,11 @@ namespace SGJ2019
 			}
 		}
 
-		protected virtual void OnDestroy()
+		public virtual void ManagedDestruction()
 		{
 			if (Instance == this)
 			{
+				isSceneBeingReloaded = true;
 				Instance = null;
 			}
 		}

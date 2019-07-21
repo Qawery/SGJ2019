@@ -82,7 +82,7 @@ namespace SGJ2019
 					OnTurnEnd?.Invoke();
 					currentTurnPhase = OwnerPhase.HUMAN;
 					++roundNumber;
-					LogManager.Instance.AddMessage("Round " + roundNumber.ToString() + " start");
+					LogManager.Instance.AddMessage("Round " + roundNumber.ToString() + " start. Rounds left: " + (GameManager.Instance.RoundLimit - roundNumber).ToString());
 				}
 				else
 				{
