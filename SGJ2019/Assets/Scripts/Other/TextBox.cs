@@ -27,5 +27,16 @@ namespace SGJ2019
 				gameObject.SetActive(true);
 			}
 		}
+
+		public void SetText(string newText, Color color)
+		{
+			SetText(newText);
+			SetColor(color);
+		}
+
+		public void SetColor(Color color)
+		{
+			text.color = color;
+		}
 	}
 }

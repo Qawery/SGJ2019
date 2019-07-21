@@ -3660,6 +3660,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -192.30005
       objectReference: {fileID: 0}
+    - target: {fileID: 8715076007806930331, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 854972555162400655, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854972555162400655, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854972555162400655, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854972555162400655, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 854972555162400655, guid: d3e055abb99cd674cb479cce63697b81,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3e055abb99cd674cb479cce63697b81, type: 3}
 --- !u!1001 &6684187559357384489
