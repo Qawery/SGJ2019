@@ -7,8 +7,7 @@ namespace SGJ2019
 	public class AttackAction : PlayerAction
 	{
 		public override string Name => "Attack";
-		public override string Description => "Damage: " + Damage.ToString() + "\n" +
-												"Range: " + MinRange.ToString() + (MinRange == MaxRange ? "" : "-" + MaxRange.ToString()) + "\n" +
+		public override string Description => "Damage: " + Damage.ToString() + "  Range: " + MinRange.ToString() + (MinRange == MaxRange ? "" : "-" + MaxRange.ToString()) + "\n" +
 												base.Description;
 		public override int Cost => 1;
 		public virtual int Damage => 1;

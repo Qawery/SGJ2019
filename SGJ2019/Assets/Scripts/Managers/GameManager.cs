@@ -64,7 +64,7 @@ namespace SGJ2019
 				loadSceneTime -= Time.deltaTime;
 				if (loadSceneTime <= 0.0f)
 				{
-					SceneManager.LoadScene("MainMenu");
+					QuitToMainMenu();
 				}
 			}
 		}
@@ -122,6 +122,11 @@ namespace SGJ2019
 		{
 			lifecycleComponent.OnLifecycleComponentDestroyed -= OnSoldierDestroyed;
 			soldiers.Remove(lifecycleComponent.GetComponent<Card>());
+		}
+
+		public void QuitToMainMenu()
+		{
+			SceneManager.LoadScene("MainMenu");
 		}
 	}
 }

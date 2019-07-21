@@ -58,12 +58,6 @@ namespace SGJ2019
 
 		public override void ExecuteTurn()
 		{
-			MakeAction();
-			executionState = CardExecutionState.DONE;
-		}
-
-		private void MakeAction()
-		{
 			var row = Utilities.FindObjectInUpwardHiearchy<RowManager>(gameObject);
 			var slot = Utilities.FindObjectInUpwardHiearchy<CardSlot>(gameObject);
 			int ourIndex = row.GetIndexOfCard(this);
@@ -86,6 +80,7 @@ namespace SGJ2019
 				soldier.HealthCompnent.Damage(damage);
 				Utilities.SpawnFloatingText("Attack", Color.grey, transform);
 				LogManager.Instance.AddMessage(CardName + " attacked " + soldier.CardName + " for " + damage.ToString() + " damage");
+				executionState = CardExecutionState.DONE;
 				return;
 			}
 
@@ -94,7 +89,6 @@ namespace SGJ2019
 			{
 				Utilities.SpawnFloatingText("Heal", Color.grey, transform);
 				healthCompnent.Heal(1 + (int)Mathf.Round(Random.Range(0.0f, 1.0f)));
-				return;
 			}
 
 
@@ -106,7 +100,6 @@ namespace SGJ2019
 				clone.ForcePass();
 				Utilities.SpawnFloatingText("Multiply", Color.grey, transform);
 				healthCompnent.Damage(healthCompnent.CurrentHealth / 2);
-				return;
 			}
 
 			//Movement
@@ -145,6 +138,7 @@ namespace SGJ2019
 				Utilities.SpawnFloatingText("Wait", Color.grey, transform);
 				LogManager.Instance.AddMessage(this.CardName + " is waiting");
 			}
+			executionState = CardExecutionState.DONE;
 		}
 
 		private void Update()
