@@ -10,6 +10,8 @@ namespace SGJ2019
 	{
 		ONGOING, WON, LOST
 	}
+
+
 	public class GameManager : MonoBehaviour, IManagedInitialization, IManagedDestroy
 	{
 		private GameState gameState = GameState.ONGOING;
