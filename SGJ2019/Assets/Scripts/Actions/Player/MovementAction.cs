@@ -3,7 +3,7 @@
 
 namespace SGJ2019
 {
-	public class MovementAction : Action
+	public class MovementAction : PlayerAction
 	{
 		public override string Name => "Move";
 		public override string Description => "Move to adjacent space" + "\n" +
@@ -38,12 +38,10 @@ namespace SGJ2019
 				int targetIndex = rowManager.GetIndexOfCard(target.Card);
 				if (sourceIndex < targetIndex)
 				{
-					LogManager.Instance.AddMessage(source.Card.CardName + " moved right");
 					rowManager.MoveCardRight(source);
 				}
 				else if (sourceIndex > targetIndex)
 				{
-					LogManager.Instance.AddMessage(source.Card.CardName + " moved left");
 					rowManager.MoveCardLeft(source);
 				}
 			}

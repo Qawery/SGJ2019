@@ -154,7 +154,7 @@ namespace SGJ2019
 			SelectedActionIndex = actionIndex;
 		}
 
-		public List<Action> GetAvailableActions()
+		public List<PlayerAction> GetAvailableActions()
 		{
 			if (SelectedCardSlot != null && SelectedCardSlot.Card.Ownership == OwnerPhase.HUMAN)
 			{
@@ -164,7 +164,7 @@ namespace SGJ2019
 			}
 			else
 			{
-				return new List<Action>();
+				return new List<PlayerAction>();
 			}
 		}
 	}

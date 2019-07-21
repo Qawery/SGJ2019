@@ -3,11 +3,11 @@
 
 namespace SGJ2019
 {
-	public class Sniper : PlayerOwnedCard
+	public class Sniper : PlayerSoldier
 	{
-		public override List<Action> GetAvailableActions()
+		public override List<PlayerAction> GetAvailableActions()
 		{
-			List<Action> result = base.GetAvailableActions();
+			List<PlayerAction> result = base.GetAvailableActions();
 			result.Add(new SniperShot());
 			return result;
 		}

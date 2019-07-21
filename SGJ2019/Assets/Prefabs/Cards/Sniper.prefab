@@ -27,6 +27,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sniper
       objectReference: {fileID: 0}
+    - target: {fileID: 219403304917236742, guid: bcb11de4fd5234143946f0524f58c1be,
+        type: 3}
+      propertyPath: maxHealth
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2680386533469299616, guid: bcb11de4fd5234143946f0524f58c1be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -156,11 +161,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.lineCount
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 219403304917236742, guid: bcb11de4fd5234143946f0524f58c1be,
-        type: 3}
-      propertyPath: maxHealth
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb11de4fd5234143946f0524f58c1be, type: 3}

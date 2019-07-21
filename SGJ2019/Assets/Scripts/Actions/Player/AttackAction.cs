@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 namespace SGJ2019
 {
-	public class AttackAction : Action
+	public class AttackAction : PlayerAction
 	{
 		public override string Name => "Attack";
 		public override string Description => "Damage: " + Damage.ToString() + "\n" +

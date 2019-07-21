@@ -46,5 +46,10 @@ namespace SGJ2019
 			Assert.IsTrue(executionState == CardExecutionState.DONE || executionState == CardExecutionState.WAITING);
 			executionState = CardExecutionState.READY;
 		}
+
+		public void ForcePass()
+		{
+			executionState = CardExecutionState.DONE;
+		}
 	}
 }

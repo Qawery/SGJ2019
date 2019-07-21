@@ -3,11 +3,11 @@
 
 namespace SGJ2019
 {
-	public class Heavy : PlayerOwnedCard
+	public class Heavy : PlayerSoldier
 	{
-		public override List<Action> GetAvailableActions()
+		public override List<PlayerAction> GetAvailableActions()
 		{
-			List<Action> result = base.GetAvailableActions();
+			List<PlayerAction> result = base.GetAvailableActions();
 			result.Add(new ShotgunBlast());
 			return result;
 		}

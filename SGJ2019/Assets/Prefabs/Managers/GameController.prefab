@@ -61,7 +61,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &506589836
 MonoBehaviour:
@@ -567,10 +567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9da233c8afb065478033eac97cd50b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 50
+  panSpeed: 40
   maxPositionOffsetX: 900
   maxPositionOffsetY: 500
-  zoomSpeed: 70
+  zoomSpeed: 40
   minOrthographicSize: 150
   maxOrthographicSize: 1000
 --- !u!114 &5214817285279410353

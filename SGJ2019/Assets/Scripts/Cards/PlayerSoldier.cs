@@ -6,7 +6,7 @@ namespace SGJ2019
 {
 	[RequireComponent(typeof(HealthComponent))]
 	[RequireComponent(typeof(ActionPointsComponent))]	
-	public class PlayerOwnedCard : Card, IActionProvider
+	public class PlayerSoldier : Card, IActionProvider
 	{
 		protected HealthComponent healthCompnent = null;
 		public HealthComponent HealthCompnent => healthCompnent;
@@ -21,10 +21,11 @@ namespace SGJ2019
 			actionPointsComponent = GetComponent<ActionPointsComponent>(); 
 		}
 
-		public virtual List<Action> GetAvailableActions()
+		public virtual List<PlayerAction> GetAvailableActions()
 		{
-			List<Action> result = new List<Action>();
+			List<PlayerAction> result = new List<PlayerAction>();
 			result.Add(new MovementAction());
+			result.Add(new SwitchRow());
 			result.Add(new PistolShot());
 			return result;
 		}

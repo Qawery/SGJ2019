@@ -1,6 +1,6 @@
 ﻿namespace SGJ2019
 {
-	public abstract class Action
+	public abstract class PlayerAction
 	{
 		public abstract string Name { get; }
 		public virtual string Description => "Cost: " + Cost.ToString();

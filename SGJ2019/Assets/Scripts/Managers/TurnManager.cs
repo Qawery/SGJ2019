@@ -27,7 +27,7 @@ namespace SGJ2019
 		public override Dictionary<InitializationPhases, System.Action> InitializationActions =>
 			new Dictionary<InitializationPhases, System.Action>()
 			{
-				[InitializationPhases.LAST] = ManagedInitialize
+				[InitializationPhases.TURN_MANAGER] = ManagedInitialize
 			};
 
 
@@ -41,7 +41,7 @@ namespace SGJ2019
 				{
 					aiManagedCards.Add((OwnerPhase)i, new List<AIManagedCard>());
 				}
-				LogManager.Instance.AddMessage("Level start, round " + roundNumber + ", player turn");
+				LogManager.Instance.AddMessage("Level start, round " + roundNumber);
 			}
 		}
 
@@ -82,12 +82,11 @@ namespace SGJ2019
 					OnTurnEnd?.Invoke();
 					currentTurnPhase = OwnerPhase.HUMAN;
 					++roundNumber;
-					LogManager.Instance.AddMessage("Round " + roundNumber.ToString() + " start, player turn");
+					LogManager.Instance.AddMessage("Round " + roundNumber.ToString() + " start");
 				}
 				else
 				{
 					++currentTurnPhase;
-					LogManager.Instance.AddMessage("Nature turn");
 				}
 			}
 		}

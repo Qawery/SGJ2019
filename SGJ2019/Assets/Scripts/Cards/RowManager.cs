@@ -9,6 +9,7 @@ namespace SGJ2019
 	{
 		[SerializeField] private CardSlot cardSlotPrefab = null;
 		private List<CardSlot> currentCardSlots = new List<CardSlot>();
+		public CardSlot[] AllSlots => currentCardSlots.ToArray();
 
 
 		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
@@ -22,6 +23,7 @@ namespace SGJ2019
 		{
 			Assert.IsNotNull(cardSlotPrefab);
 			Assert.IsTrue(GetComponentsInChildren<CardSlot>().Length == 0);
+			var test = GetComponentsInChildren<Card>();
 			foreach (var startingCard in GetComponentsInChildren<Card>())
 			{
 				AddCardToRowOnRight(startingCard);
@@ -56,13 +58,13 @@ namespace SGJ2019
 		{
 			Assert.IsTrue(oldIndex != destinationIndex);
 			Assert.IsTrue(oldIndex >= 0 && oldIndex < currentCardSlots.Count);
-			Assert.IsTrue(destinationIndex >= 0 && destinationIndex <= currentCardSlots.Count);
-			while (oldIndex > destinationIndex)
+			Assert.IsTrue(destinationIndex >= 0 && destinationIndex < currentCardSlots.Count);
+			while (oldIndex < destinationIndex)
 			{
 				MoveCardRight(oldIndex);
 				++oldIndex;
 			}
-			while (oldIndex < destinationIndex)
+			while (oldIndex > destinationIndex)
 			{
 				MoveCardLeft(oldIndex);
 				--oldIndex;
@@ -197,6 +199,48 @@ namespace SGJ2019
 		private void OnSlotDestroyed(LifecycleComponent lifecycleComponent)
 		{
 			RemoveCard(lifecycleComponent.GetComponent<CardSlot>());
+		}
+
+		public int GetDistanceBetweenCards(Card card1, Card card2)
+		{
+			Assert.IsNotNull(card1);
+			Assert.IsNotNull(card2);
+			Assert.IsFalse(card1 == card2);
+			return Mathf.Abs(GetIndexOfCard(card1) - GetIndexOfCard(card2));
+		}
+
+		public int GetDistanceBetweenCards(CardSlot slot1, CardSlot slot2)
+		{
+			Assert.IsNotNull(slot1);
+			Assert.IsNotNull(slot2);
+			Assert.IsFalse(slot1 == slot2);
+			return Mathf.Abs(currentCardSlots.IndexOf(slot1) - currentCardSlots.IndexOf(slot2));
+		}
+
+		public Card GetCardOnLeftOfIndex(int index)
+		{
+			Assert.IsTrue(index >= 0 && index < currentCardSlots.Count);
+			if (index == 0)
+			{
+				return null;
+			}
+			else
+			{
+				return currentCardSlots[index - 1].Card;
+			}
+		}
+
+		public Card GetCardOnRightOfIndex(int index)
+		{
+			Assert.IsTrue(index >= 0 && index < currentCardSlots.Count);
+			if (index == currentCardSlots.Count - 1)
+			{
+				return null;
+			}
+			else
+			{
+				return currentCardSlots[index + 1].Card;
+			}
 		}
 	}
 }
