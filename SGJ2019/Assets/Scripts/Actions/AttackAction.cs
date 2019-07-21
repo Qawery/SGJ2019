@@ -27,16 +27,24 @@ namespace SGJ2019
 			var actionPoints = source.Card.GetComponent<ActionPointsComponent>();
 			if (actionPoints != null && actionPoints.CurrentActionPoints < Cost)
 			{
+				Utilities.SpawnFloatingText("Insufficient action points!", Color.red, source.Card.transform);
 				return false;
 			}
 			var targetHealthComponent = target.Card.GetComponent<HealthComponent>();
 			if (targetHealthComponent == null)
 			{
+				Utilities.SpawnFloatingText("Invalid target!", Color.red, source.Card.transform);
 				return false;
 			}
 			var rowManager = source.transform.parent.GetComponent<RowManager>();
+			if (rowManager != target.transform.parent.GetComponent<RowManager>())
+			{
+				Utilities.SpawnFloatingText("Invalid row!", Color.red, source.Card.transform);
+				return false;
+			}
 			if (IsTargetOutsideRange(rowManager, source, target))
 			{
+				Utilities.SpawnFloatingText("Outside range!", Color.red, source.Card.transform);
 				return false;
 			}
 			return true;

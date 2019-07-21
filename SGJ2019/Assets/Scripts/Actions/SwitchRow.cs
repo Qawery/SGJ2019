@@ -16,15 +16,25 @@ namespace SGJ2019
 			var actionPoints = source.Card.GetComponent<ActionPointsComponent>();
 			if (actionPoints != null && actionPoints.CurrentActionPoints < Cost)
 			{
+				Utilities.SpawnFloatingText("Insufficient action points!", Color.red, source.Card.transform);
 				return false;
 			}
 			if (source.transform.parent.GetComponent<RowManager>() == target.transform.parent.GetComponent<RowManager>())
 			{
+				Utilities.SpawnFloatingText("Invalid row!", Color.red, source.Card.transform);
 				return false;
 			}
 			var rowManager = target.transform.parent.GetComponent<RowManager>();
 			int otherIndex = rowManager.GetIndexOfCard(target.Card);
-			return otherIndex == 0 || otherIndex == rowManager.AllSlots.Length - 1;
+			if (otherIndex == 0 || otherIndex == rowManager.AllSlots.Length - 1)
+			{
+				return true;
+			}
+			else
+			{
+				Utilities.SpawnFloatingText("Select edge!", Color.red, source.Card.transform);
+				return false;
+			}
 		}
 
 		public override void ExecuteAction(CardSlot source, CardSlot target)
