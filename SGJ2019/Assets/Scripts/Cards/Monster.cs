@@ -58,8 +58,8 @@ namespace SGJ2019
 
 		public override void ExecuteTurn()
 		{
-			var row = Utilities.FindObjectInUpwardHiearchy<RowManager>(gameObject);
-			var slot = Utilities.FindObjectInUpwardHiearchy<CardSlot>(gameObject);
+			var row = GetComponentInParent<RowManager>();
+			var slot = GetComponentInParent<CardSlot>();
 			int ourIndex = row.GetIndexOfCard(this);
 			
 			//Attacking

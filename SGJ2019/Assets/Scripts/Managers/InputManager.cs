@@ -34,13 +34,18 @@ namespace SGJ2019
 					Assert.IsNotNull(playerOwnedCard);
 					var availableActions = playerOwnedCard.GetAvailableActions();
 					Assert.IsTrue(value >= 0 && value < availableActions.Count);
-					logText.SetText(availableActions[value].Description);
+					selectedActionIndex = value;
+					logText.SetText(availableActions[selectedActionIndex].Description);
+				}
+				else if (value == NO_ACTION)
+				{
+					selectedActionIndex = value;
+					logText.SetText("");
 				}
 				else
 				{
-					logText.SetText("");
+					Assert.IsTrue(false);
 				}
-				selectedActionIndex = value;
 				OnSelectedActionIndexChange?.Invoke();
 			}
 		}
@@ -67,24 +72,9 @@ namespace SGJ2019
 					{
 						var playerOwnedCard = SelectedCardSlot.Card as IActionProvider;
 						Assert.IsNotNull(playerOwnedCard);
-						if (playerOwnedCard.GetAvailableActions().Count > 0)
-						{
-							SelectedActionIndex = 0;
-						}
-						else
-						{
-							SelectedActionIndex = NO_ACTION;
-						}
-					}
-					else
-					{
-						SelectedActionIndex = NO_ACTION;
 					}
 				}
-				else
-				{
-					SelectedActionIndex = NO_ACTION;
-				}
+				SelectedActionIndex = NO_ACTION;
 				OnCardSlotSelectionChange?.Invoke(previousSlot, selectedCardSlot);
 			}
 		}
@@ -130,7 +120,7 @@ namespace SGJ2019
 			}
 			else
 			{
-				if (SelectedActionIndex >= 0)
+				if (SelectedActionIndex != NO_ACTION)
 				{
 					ProcessAction(cardSlot);
 				}
@@ -143,15 +133,25 @@ namespace SGJ2019
 
 		private void ProcessAction(CardSlot otherSlot)
 		{
-			var playerOwnedCard = SelectedCardSlot.Card as IActionProvider;
+			var selectedCard = SelectedCardSlot.Card;
+			var playerOwnedCard = selectedCard as IActionProvider;
+			Assert.IsNotNull(playerOwnedCard);
 			var availableActions = playerOwnedCard.GetAvailableActions();
+			Assert.IsTrue(SelectedActionIndex >= 0 && SelectedActionIndex < availableActions.Count);
 			availableActions[SelectedActionIndex].ExecuteAction(SelectedCardSlot, otherSlot);
-			SelectedCardSlot = null;
+			SelectedCardSlot = selectedCard.GetComponentInParent<CardSlot>();
 		}
 
 		public void ActionSelected(int actionIndex)
 		{
-			SelectedActionIndex = actionIndex;
+			if (SelectedActionIndex == actionIndex)
+			{
+				SelectedActionIndex = NO_ACTION;
+			}
+			else
+			{
+				SelectedActionIndex = actionIndex;
+			}
 		}
 
 		public List<PlayerAction> GetAvailableActions()

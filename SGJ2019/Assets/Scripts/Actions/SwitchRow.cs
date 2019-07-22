@@ -6,7 +6,7 @@ namespace SGJ2019
 	public class SwitchRow : PlayerAction
 	{
 		public override string Name => "Switch row";
-		public override string Description => "Move to different row" + "\n" +
+		public override string Description => "Move to edge of different row" + "\n" +
 												base.Description;
 		public override int Cost => 2;
 

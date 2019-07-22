@@ -6,7 +6,7 @@ namespace SGJ2019
 	public class MovementAction : PlayerAction
 	{
 		public override string Name => "Move";
-		public override string Description => "Move to adjacent space" + "\n" +
+		public override string Description => "Move to adjacent space in row" + "\n" +
 												base.Description;
 		public override int Cost => 1;
 
