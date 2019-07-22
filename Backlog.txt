@@ -1,0 +1,24 @@
+Infestation TODO:
+
+Tryb prezentacji z wyświetlonym sterowaniem.
+Kontekstowe wyświetlanie sterowania.
+Odznaczanie akcji prawym przyciskiem myszy.
+Wycentrowanie na karcie środkowym przyciskiem myszy.
+Klawisze cyfr do wybierania akcji.
+Zoom kółkiem myszy.
+Przesuwanie kamery brzegiem ekranu.
+Mocniejsze bronie.
+Losowane obrażenia broni.
+System akcji.
+System ekwipunku.
+Brak rejestracji nowych przeciwników?
+Oczekiwanie na efekty / nakładanie się napisów.
+Przy kończeniu tury info że jednostki mają jeszcze punkty akcji / podświetlenie ich.
+Wykastrować CardSlot, przenieść logikę do Card.
+Zaznaczanie przeciwników z pokazywaniem statystyk.
+Graficzne indykatory życia i punktów akcji.
+Poprawić wyświetlanie logów, bo wychodzą poza obszar.
+Przewijane okianko logów.
+Dodać muzykę.
+Dodać dźwięki.
+Podmienić kursor.

@@ -24,11 +24,11 @@ namespace SGJ2019
 
 		public override void ManagedDestruction()
 		{
-			base.ManagedDestruction();
 			if (TurnManager.Instance != null)
 			{
 				TurnManager.Instance.UnregisterAICard(this);
 			}
+			base.ManagedDestruction();
 		}
 
 		public virtual bool CanContinue()

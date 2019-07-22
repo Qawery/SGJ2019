@@ -14,14 +14,15 @@ namespace SGJ2019
 
 	public class GameManager : SimpleSingleton<GameManager>
 	{
-		private GameState gameState = GameState.ONGOING;
-		public GameState GameState => gameState;
 		[SerializeField] private float loadSceneTime = 2.0f;
 		[SerializeField] private int roundLimit = 20;
 		public int RoundLimit => roundLimit;
 		private List<Card> monsters = new List<Card>();
 		private List<Card> soldiers = new List<Card>();
 		[SerializeField] private TextBox textBox = null;
+
+
+		public GameState GameState { get; private set; } = GameState.ONGOING;
 
 
 		protected override void ManagedInitialize()
@@ -34,26 +35,27 @@ namespace SGJ2019
 				{
 					TryAddCard(card);
 				}
+				LifecycleComponent.GlobalOnLifecycleComponentCreated += OnGlobalLifecycleComponentCreated;
 			}
 		}
 
 		private void LateUpdate()
 		{
-			if (gameState == GameState.ONGOING)
+			if (GameState == GameState.ONGOING)
 			{
 				if (monsters.Count == 0)
 				{
-					gameState = GameState.WON;
+					GameState = GameState.WON;
 					textBox.SetText("Victory:" + "\n" + "All Enemies Defeated", Color.green);
 				}
 				else if (soldiers.Count == 0)
 				{
-					gameState = GameState.LOST;
+					GameState = GameState.LOST;
 					textBox.SetText("Defeat:" + "\n" + "All Soldiers Lost", Color.red);
 				}
 				else if (TurnManager.Instance.RoundNumber > roundLimit)
 				{
-					gameState = GameState.LOST;
+					GameState = GameState.LOST;
 					textBox.SetText("Defeat:" + "\n" + "Time Out", Color.red);
 				}
 			}
@@ -79,6 +81,7 @@ namespace SGJ2019
 				soldier.LifecycleComponent.OnLifecycleComponentDestroyed -= OnSoldierDestroyed;			
 			}
 			soldiers.Clear();
+			LifecycleComponent.GlobalOnLifecycleComponentCreated -= OnGlobalLifecycleComponentCreated;
 		}
 
 		private void TryAddCard(Card card)

@@ -43,13 +43,16 @@ namespace SGJ2019
 
 		private void OnSelectedActionIndexChange()
 		{
-			if (InputManager.Instance.SelectedActionIndex == actionIndex)
+			if (InputManager.Instance != null)
 			{
-				button.colors = selectedColorBlock;
-			}
-			else
-			{
-				button.colors = defaultColorBlock;
+				if (InputManager.Instance.SelectedActionIndex == actionIndex)
+				{
+					button.colors = selectedColorBlock;
+				}
+				else
+				{
+					button.colors = defaultColorBlock;
+				}
 			}
 		}
 

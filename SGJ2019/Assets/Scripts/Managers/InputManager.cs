@@ -91,6 +91,19 @@ namespace SGJ2019
 			}
 		}
 
+		public override void ManagedDestruction()
+		{
+			if (Instance == this)
+			{
+				CardSlot.OnSlotClicked -= CardSlotClicked;
+				if (TurnManager.Instance != null)
+				{
+					TurnManager.Instance.OnTurnEnd -= OnTurnEnd;
+				}
+			}
+			base.ManagedDestruction();
+		}
+
 		private void LateUpdate()
 		{
 			inputBlockade = false;
