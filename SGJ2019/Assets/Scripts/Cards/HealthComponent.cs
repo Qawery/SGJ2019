@@ -49,5 +49,15 @@ namespace SGJ2019
 			currentHealth = Mathf.Min(currentHealth + ammount, maxHealth);
 			Utilities.SpawnFloatingText(ammount.ToString(), Color.green, transform);
 		}
+
+		public void ForceSetCurrentHealth(int ammount)
+		{
+			Assert.IsTrue(ammount >= 0 && ammount <= maxHealth);
+			currentHealth = ammount;
+			if (currentHealth == 0)
+			{
+				Destroy(gameObject);
+			}
+		}
 	}
 }

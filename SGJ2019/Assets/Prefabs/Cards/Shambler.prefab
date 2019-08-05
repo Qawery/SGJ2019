@@ -135,12 +135,12 @@ PrefabInstance:
     - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
       propertyPath: multiplyChance
-      value: 0.1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6382061129217452129, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
       propertyPath: healChance
-      value: 0.4
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1011876577126402430, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}

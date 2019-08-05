@@ -1,5 +1,8 @@
 Infestation TODO:
 
+Wyboldować początki opisów w How To Play.
+Opis zwrócenia potworów (i strzałki) w How to Play.
+Graficzne opisy w How To Play.
 Tryb prezentacji z wyświetlonym sterowaniem.
 Kontekstowe wyświetlanie sterowania.
 Odznaczanie akcji prawym przyciskiem myszy.
@@ -11,7 +14,7 @@ Mocniejsze bronie.
 Losowane obrażenia broni.
 System akcji.
 System ekwipunku.
-Brak rejestracji nowych przeciwników?
+Rozwiązać problem zbyt dużych rzędów.
 Oczekiwanie na efekty / nakładanie się napisów.
 Przy kończeniu tury info że jednostki mają jeszcze punkty akcji / podświetlenie ich.
 Wykastrować CardSlot, przenieść logikę do Card.
@@ -22,3 +25,6 @@ Przewijane okianko logów.
 Dodać muzykę.
 Dodać dźwięki.
 Podmienić kursor.
+Zaokrąglenie szans do 1%.
+Przedstawienie prawdopodobieństwa jako procent.
+Przeciwnicy startują w stanie DONE i zamieniają się na READY na początku swojej tury.

@@ -8,10 +8,11 @@ namespace SGJ2019
 	[RequireComponent(typeof(HealthComponent))]
 	public class Monster : AIManagedCard
 	{
+		private const int MULTIPLY_HEALTH_THRESHOLD = 1;
 		[SerializeField] private int minDamage = 1;
 		[SerializeField] private int maxDamage = 2;
-		[SerializeField] private float healChance = 0.3f;
-		[SerializeField] private float multiplyChance = 0.0f;
+		[SerializeField] private int healChance = 30;
+		[SerializeField] private int multiplyChance = 5;
 		[SerializeField] private Image leftArrow = null;
 		[SerializeField] private Image rightArrow = null;
 		private bool facingLeft = false;
@@ -50,8 +51,8 @@ namespace SGJ2019
 			Assert.IsTrue(minDamage >= 0);
 			Assert.IsTrue(maxDamage >= 1);
 			Assert.IsTrue(maxDamage >= minDamage);
-			Assert.IsTrue(healChance <= 1.0f);
-			Assert.IsTrue(multiplyChance >= 0.0f && multiplyChance <= 1.0f);
+			Assert.IsTrue(healChance >= 0 && healChance <= 100);
+			Assert.IsTrue(multiplyChance >= 0 && multiplyChance <= 100);
 			Assert.IsTrue(ownership == OwnerPhase.ENEMY);
 			FacingLeft = Random.Range(0.0f, 1.0f) >= 0.5f;
 		}
@@ -85,7 +86,7 @@ namespace SGJ2019
 			}
 
 			//Healing
-			if (healChance >= 0.0f && healthCompnent.CurrentHealth < healthCompnent.MaxHealth && Random.Range(0.0f, 1.0f) <= healChance)
+			if (healthCompnent.CurrentHealth < healthCompnent.MaxHealth && healChance > 0 && Random.Range(0, 100) < healChance)
 			{
 				Utilities.SpawnFloatingText("Heal", Color.grey, transform);
 				healthCompnent.Heal(1 + (int)Mathf.Round(Random.Range(0.0f, 1.0f)));
@@ -93,13 +94,16 @@ namespace SGJ2019
 
 
 			//Multiplying
-			if (multiplyChance > 0.0f && healthCompnent.CurrentHealth > 1 && Random.Range(0.0f, 1.0f) <= multiplyChance)
+			if (healthCompnent.CurrentHealth >= MULTIPLY_HEALTH_THRESHOLD && multiplyChance > 0 && Random.Range(0, 100) < multiplyChance)
 			{
 				var clone = Instantiate(this);
 				row.AddCardToRowOnIndex(ourIndex, clone);
-				clone.ForcePass();
-				Utilities.SpawnFloatingText("Multiply", Color.grey, transform);
 				healthCompnent.Damage(healthCompnent.CurrentHealth / 2);
+				multiplyChance /= 2;
+				clone.ForcePass();
+				clone.multiplyChance = multiplyChance / 2;
+				clone.GetComponent<HealthComponent>().ForceSetCurrentHealth(healthCompnent.CurrentHealth);
+				Utilities.SpawnFloatingText("Multiply", Color.grey, transform);
 			}
 
 			//Movement
