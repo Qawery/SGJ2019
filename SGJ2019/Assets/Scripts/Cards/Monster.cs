@@ -12,7 +12,7 @@ namespace SGJ2019
 		[SerializeField] private int minDamage = 1;
 		[SerializeField] private int maxDamage = 2;
 		[SerializeField] private int healChance = 30;
-		[SerializeField] private int multiplyChance = 5;
+		[SerializeField] private int multiplyChance = 5;	
 		[SerializeField] private Image leftArrow = null;
 		[SerializeField] private Image rightArrow = null;
 		private bool facingLeft = false;
@@ -92,7 +92,6 @@ namespace SGJ2019
 				healthCompnent.Heal(1 + (int)Mathf.Round(Random.Range(0.0f, 1.0f)));
 			}
 
-
 			//Multiplying
 			if (healthCompnent.CurrentHealth >= MULTIPLY_HEALTH_THRESHOLD && multiplyChance > 0 && Random.Range(0, 100) < multiplyChance)
 			{
@@ -149,9 +148,9 @@ namespace SGJ2019
 		{
 			description.text =
 				"Health: " + healthCompnent.CurrentHealth.ToString() + " / " + healthCompnent.MaxHealth.ToString() + "\n" +
-				"Damage: " + minDamage.ToString() + ((minDamage == maxDamage) ? "" : "-" + maxDamage.ToString()) + "\n" +
-				"Heal chance: " + healChance.ToString() + "\n" +
-				"Multiply chance: " + multiplyChance.ToString();
+				"Damage: " + minDamage.ToString() + ((minDamage == maxDamage) ? "" : " - " + maxDamage.ToString()) + "\n" +
+				"Heal chance: " + healChance.ToString() + " %\n" +
+				"Multiply chance: " + multiplyChance.ToString() + " %";
 		}
 	}
 }
