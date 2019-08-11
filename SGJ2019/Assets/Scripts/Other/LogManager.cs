@@ -35,9 +35,13 @@ namespace SGJ2019
 		private void UpdateText()
 		{
 			string finalText = "";
-			foreach (var message in messages)
+			if (messages.Count > 0)
 			{
-				finalText += "\n" + message;
+				finalText += messages[0];
+				for (int i = 1; i < messages.Count; ++i)
+				{
+					finalText += "\n" + messages[i];
+				}
 			}
 			text.text = finalText;
 		}

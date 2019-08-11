@@ -145,19 +145,17 @@ PrefabInstance:
     - target: {fileID: 1011876577126402430, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
       propertyPath: m_text
-      value: 'Shambler
-
-'
+      value: Shambler
       objectReference: {fileID: 0}
     - target: {fileID: 1011876577126402430, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1011876577126402430, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 407098151001371601, guid: 89ad3d051f9b1d449b9de4d793dc2c92,
         type: 3}

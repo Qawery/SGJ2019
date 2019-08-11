@@ -63,6 +63,7 @@ namespace SGJ2019
 				targetHealthComponent.Damage(Damage);
 				Utilities.SpawnFloatingText(Name, Color.grey, source.Card.transform);
 				LogManager.Instance.AddMessage(source.Card.CardName + " attacked " + target.Card.CardName + " with " + Name + " for " + Damage.ToString() + " damage");
+				AudioManager.Instance.PlaySound(Name);
 			}
 		}
 

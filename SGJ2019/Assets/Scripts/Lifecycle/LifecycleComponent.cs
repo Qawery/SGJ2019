@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using System.Collections.Generic;
 
 
@@ -18,7 +19,7 @@ namespace SGJ2019
 		private void Awake()
 		{			
 			CollectDependantComponents(gameObject);
-			if (LifecycleManager.Instance == null);
+			Assert.IsNotNull(LifecycleManager.Instance);
 			GlobalOnLifecycleComponentCreated?.Invoke(this);
 		}
 

@@ -11,6 +11,7 @@ namespace SGJ2019
 		public int MaxHealth => maxHealth;
 		private int currentHealth = 0;
 		public int CurrentHealth => currentHealth;
+		public System.Action OnDamage;
 
 
 		public Dictionary<InitializationPhases, System.Action> InitializationActions =>
@@ -41,6 +42,7 @@ namespace SGJ2019
 			{
 				Utilities.SpawnFloatingText(ammount.ToString(), Color.red, transform.position);
 			}
+			OnDamage?.Invoke();
 		}
 
 		public void Heal(int ammount)
