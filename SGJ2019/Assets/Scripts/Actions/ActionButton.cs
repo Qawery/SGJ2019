@@ -30,7 +30,7 @@ namespace SGJ2019
 		{
 			if (newActionIndex < 0)
 			{
-				Destroy(gameObject);
+				gameObject.SetActive(false);
 			}
 			else
 			{
@@ -38,6 +38,7 @@ namespace SGJ2019
 				var availableActions = InputManager.Instance.GetAvailableActions();
 				Assert.IsTrue(actionIndex >= 0 && actionIndex < availableActions.Count);
 				titleText.text = availableActions[actionIndex].Name;
+				gameObject.SetActive(true);
 			}
 		}
 

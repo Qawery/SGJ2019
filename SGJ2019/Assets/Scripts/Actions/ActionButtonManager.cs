@@ -9,12 +9,23 @@ namespace SGJ2019
 	public class ActionButtonManager : MonoBehaviour
 	{
 		[SerializeField] private ActionButton actionButtonPrefab = null;
-
+		private ActionButton[] buttons = null;
 
 		private void Awake()
 		{
 			Assert.IsNotNull(actionButtonPrefab);
 			GetComponent<Image>().enabled = false;
+			int neededButtons = 4;
+			while (neededButtons > 0)
+			{
+				Instantiate(actionButtonPrefab, transform);
+				--neededButtons;
+			}
+			buttons = GetComponentsInChildren<ActionButton>();
+			for (int i = 0; i < buttons.Length; ++i)
+			{
+				buttons[i].SetActionIndex(-1);
+			}
 		}
 
 		private void Start()
@@ -24,37 +35,32 @@ namespace SGJ2019
 
 		private void OnCardSlotSelectionChange(CardSlot previous, CardSlot current)
 		{
-			var existingButtons = GetComponentsInChildren<ActionButton>();
-			var availableActions = InputManager.Instance.GetAvailableActions();
-			if (availableActions.Count > 0)
-			{				
-				int neededButtons = availableActions.Count - existingButtons.Length;
-				while (neededButtons > 0)
-				{
-					Instantiate(actionButtonPrefab, transform);
-					--neededButtons;
-				}
-				existingButtons = GetComponentsInChildren<ActionButton>();
-				for (int i = 0; i < existingButtons.Length; ++i)
-				{
-					if (i >= availableActions.Count)
-					{
-						existingButtons[i].SetActionIndex(-1);
-					}
-					else
-					{
-						existingButtons[i].SetActionIndex(i);
-					}
-				}
-				GetComponent<Image>().enabled = true;
-			}
-			else
+			if (InputManager.Instance != null)
 			{
-				for (int i = 0; i < existingButtons.Length; ++i)
+				var availableActions = InputManager.Instance.GetAvailableActions();
+				if (availableActions.Count > 0)
 				{
-					existingButtons[i].SetActionIndex(-1);
+					for (int i = 0; i < buttons.Length; ++i)
+					{
+						if (i >= availableActions.Count)
+						{
+							buttons[i].SetActionIndex(-1);
+						}
+						else
+						{
+							buttons[i].SetActionIndex(i);
+						}
+					}
+					GetComponent<Image>().enabled = true;
 				}
-				GetComponent<Image>().enabled = false;
+				else
+				{
+					for (int i = 0; i < buttons.Length; ++i)
+					{
+						buttons[i].SetActionIndex(-1);
+					}
+					GetComponent<Image>().enabled = false;
+				}
 			}
 		}
 
